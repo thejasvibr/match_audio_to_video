@@ -152,11 +152,10 @@ def match_video_sync_to_audio(video_sync,
     
     audio_video_match = calculate_AV_match(matched_audio)
     
-    if audio_video_match <= kwargs.get('crosscorr_threshold', 0.5):
-        warnings.warn('The cross correlation coefficient of the  \
-                      audio and video sync signal is <=',
-                      kwargs.get('crosscorr_threshold', 0.5),
-                      'please check the audio snippet once more')
+    av_match_threshold = kwargs.get('crosscorr_threshold', 0.5)
+    if audio_video_match <= av_match_threshold:   
+        warning_msg = 'The AV sync may not be very great - please check again. The value was :' + str(audio_video_match)
+        warnings.warn(warning_msg, stacklevel=1)
     
     return(matched_audio, audio_video_match)
 
