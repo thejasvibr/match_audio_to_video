@@ -38,12 +38,7 @@ def video_sync_over_annotation_block(annotation, video_sync_data,
                                 this particular annotation    
 
     
-    timestamp_pattern : string
-                       The format of the timestamps in the frames. 
-                       The inputs should match those expected by
-                       datetime.strptime
-                       eg. see table here 
-                       https://www.journaldev.com/23365/python-string-to-datetime-strptime
+    
 
     video_sync_data : pandas.DataFrame with at least the 
                       following columns. 
@@ -60,6 +55,13 @@ def video_sync_over_annotation_block(annotation, video_sync_data,
                        to match it. 
                        eg. if a second has 22 points , and the target is 
                        25 - then this second is upsampled.
+
+    timestamp_pattern : string
+                       The format of the timestamps in the frames. 
+                       The inputs should match those expected by
+                       datetime.strptime
+                       eg. see table here 
+                       https://www.journaldev.com/23365/python-string-to-datetime-strptime
 
     min_fps : int>0. 
               The lowest fps expected in the video
@@ -387,10 +389,39 @@ def extract_subset_for_syncblock(video_sync_data, target_timestamps,
     
     all_timestamps = video_sync_data['timestamp_verified'].apply(make_posix_time,
                                                                     0,**kwargs)
+
+    # check if the video sync timestamps actually go on till the required timepoint
+    check_if_syncblock_fallsin_videosyncfile(start, end, all_timestamps)
+    
     relevant_rows = np.logical_and(all_timestamps>=start, all_timestamps<=end)
     
     syncblock_data = video_sync_data[relevant_rows].reset_index()
     return(syncblock_data)
+
+def check_if_syncblock_fallsin_videosyncfile(start, end, all_timestamps):
+    '''
+    Parameters
+    ----------
+    start,end : float. 
+                POSIX timestamps
+
+    all_timestamps : list with floats.m 
+                     A list of all  POSIX timestamps.s
+
+    Returns
+    -------
+    None 
+
+    '''
+    start_is_present = start in all_timestamps
+    end_is_present = end in all_timestamps
+    
+    if not start_is_present:
+        raise InvalidAnnotationPoint('Start point of annotation is not within the videosync file')
+    if not end_is_present:
+        msg = 'The videosync file is not long enough. \
+        Please re-read video file to a later point or reduce the minimum duration'
+        raise InvalidAnnotationPoint(msg)
 
 
 
@@ -483,7 +514,7 @@ def set_annotation_start_end(commonfps, annotation_start, annotation_end,
         
     frames_wstart_timestamp = commonfps[commonfps['timestamp_verified']==annotation_start]
     annotation_start_frame = int(np.floor(kwargs['common_fps']*subsec_start))
-    start_index = frames_wstart_timestamp.timestamp_verified._index[annotation_start_frame]
+    start_index = frames_wstart_timestamp.timestamp_verified._index[annotation_start_frame-1]
     
     frames_wend_timestamp = commonfps[commonfps['timestamp_verified']==annotation_end]
     annotation_end_frame = int(np.floor(kwargs['common_fps']*subsec_end))
@@ -635,6 +666,11 @@ class InvalidFramenumber(Exception):
     pass
 
 class NoMatchFound(Exception):
+    '''
+    '''
+    pass
+
+class InvalidAnnotationPoint(Exception):
     '''
     '''
     pass
