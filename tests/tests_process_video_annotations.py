@@ -8,7 +8,7 @@ Created on Wed Aug 14 12:47:58 2019
 from __future__ import division
 
 import sys 
-sys.path.append('..//')
+sys.path.append('..//bin//')
 import unittest
 import pandas as pd
 import soundfile as sf
@@ -171,8 +171,57 @@ class TestCalcRelativeFramePosition(unittest.TestCase):
                                               self.all_timestamps)
 
         self.assertTrue('Unable to find a matching timestamp for' in context.exception[0])
+
+class CheckBadAnnotations(unittest.TestCase):
+    def setUp(self):
+            # create the videosync data
+            # attach_annotation_start_and_end(video_sync_data, target_timestamps,
+                                            #videosync_commonfps,
+                                            #**kwargs):
+            self.video_sync_data = pd.DataFrame(data=[], columns=['timestamp_verified',
+                                                       'led_intensity'])
+            start = '2019-01-01 10:00:00' 
+            stop = '2019-01-01 10:01:00'
+            self.video_sync_data['timestamp_verified'] = self.make_timestamps_for_testcase(start,
+                                                           stop,
+                                                           timestamp_pattern='%Y-%m-%d %H:%M:%S')
+            
+            self.video_sync_data['led_intensity'] = np.random.normal(0,0.1,self.video_sync_data.shape[0])
+    
+            self.annotation = pd.DataFrame(data={'start_timestamp':['2019-01-01 10:00:00'],
+                                                 'start_framenumber':[10],
+                                                 'end_timestamp':['2019-01-01 10:00:01'],
+                                                 'end_framenumber':[15],
+                                                 'annotation_id':[2201]})
+    def make_timestamps_for_testcase(self,start,stop, **kwargs):
+        '''
+        '''
+        posix_times = make_timestamps_in_between(start,stop,
+                                                **kwargs)
+        human_readable = [datetime_from_posix(each, **kwargs) for each in posix_times]
         
- 
+        frame_rate_variation = np.tile([20,21,22],20)
+        repeated_timestamps = []
+        for eachframerate, timestamp in zip(frame_rate_variation, human_readable):
+            repeated_timestamps.append(np.tile(timestamp, eachframerate))
+        
+        repeated_timestamps = np.concatenate(repeated_timestamps)
+        return(repeated_timestamps)
+        
+    
+    def test_poor_starttimestamp(self):
+        '''
+        '''
+        self.annotation['start_timestamp'][0] = '2019-01-01 9:00:00'
+        video_sync_over_annotation_block(self.annotation.loc[0,:], self.video_sync_data,
+                                         timestamp_pattern = '%Y-%m-%d %H:%M:%S',
+                                         min_durn = 10)
+        
+    
+    
+    
+
+
 if __name__ == '__main__':
     unittest.main()
         

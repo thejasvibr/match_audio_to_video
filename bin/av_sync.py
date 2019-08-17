@@ -9,8 +9,8 @@ import glob
 import warnings
 import multiprocessing
 import time
-import matplotlib.pyplot as plt
-plt.rcParams['agg.path.chunksize'] = 10000
+#import matplotlib.pyplot as plt
+#plt.rcParams['agg.path.chunksize'] = 10000
 import numpy as np 
 import peakutils as peak
 import scipy.signal as signal 

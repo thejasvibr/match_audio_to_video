@@ -19,8 +19,8 @@ import pandas as pd
 import scipy.signal as signal
 import soundfile as sf
 from tqdm import tqdm
-import matplotlib.pyplot as plt
-plt.rcParams['agg.path.chunksize'] = 10000
+#import matplotlib.pyplot as plt
+#plt.rcParams['agg.path.chunksize'] = 10000
 
 from av_sync import get_audio_sync_signal  as make_onoff_from_spikey
 
@@ -156,6 +156,8 @@ def match_video_sync_to_audio(video_sync,
     if audio_video_match <= av_match_threshold:   
         warning_msg = 'The AV sync may not be very great - please check again. The value was :' + str(audio_video_match)
         warnings.warn(warning_msg, stacklevel=1)
+    else:
+        print('AV Sync was above threshold: ', audio_video_match)
     
     return(matched_audio, audio_video_match)
 

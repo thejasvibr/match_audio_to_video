@@ -8,7 +8,7 @@ import os
 import cv2
 import glob
 import time
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pytesseract

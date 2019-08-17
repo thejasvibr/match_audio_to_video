@@ -9,6 +9,7 @@ import pdb
 import warnings
 import datetime as dt
 from datetime import timedelta
+import os
 import time
 import numpy as np
 import pandas as pd
@@ -76,6 +77,11 @@ def video_sync_over_annotation_block(annotation, video_sync_data,
               Defaults to 5 seconds. 
               eg. is the sync signal goes ON/OFF at between 0.08-0.5 seconds. 
               >= 10 transitions will have happened in 5 seconds. 
+
+    output_folder : str
+                    The folder to which the commonfps files are saved into. 
+                    Defaults to the current working directory. 
+        
     
     Returns
     -------
@@ -91,12 +97,13 @@ def video_sync_over_annotation_block(annotation, video_sync_data,
     # check if there's variation in fps in the video sync block
     # and bring the video sync signal to a common fps
     videosync_commonfps, success = bring_video_sync_to_commonfps(target_timestamps,
-                                                                                    video_sync_data,
+                                                                  video_sync_data,
                                                          **kwargs)
     if success:
+        output_folder = kwargs.get('output_folder','.\\')
         # save the common fps video sync signal 
         unique_id = str(annotation['annotation_id'])
-        output_filename = 'common_fps_video_sync'+unique_id+'.csv'
+        output_filename = os.path.join(output_folder,'common_fps_video_sync'+unique_id+'.csv')
         videosync_commonfps.to_csv(output_filename)
         
         print('SAVED IT ALL!!!' + unique_id)
@@ -275,8 +282,9 @@ def bring_video_sync_to_commonfps(target_timestamps, video_sync_data,
                                                       **kwargs)
     
     if timestamps_missing:
-        print(absent_timestamps)
-        warnings.warn('missing timestamps found in video')
+        warnings.warn('The following timestamps are missing in the annotation',
+                                      stacklevel=1)
+        display_missing_timestamps(absent_timestamps)
         return(None, False)
     #check for odd fps variation within each second 
     allabove_minfps = check_allabove_minimum_fps(target_timestamps,
@@ -298,8 +306,16 @@ def bring_video_sync_to_commonfps(target_timestamps, video_sync_data,
         print(target_timestamps['annotation_block'])
         warnings.warn('FPS fell below the minimum required - ignoring this annotation')
         return(None, False)
-        
-        
+
+def display_missing_timestamps(missing_timestamps):
+    '''Prints a reasonable amount of information without overwhelming the user
+    '''
+    if len(missing_timestamps)>5:
+        output = missing_timestamps[0],'...to...',missing_timestamps[-1]
+    else:
+        output = missing_timestamps 
+    print(output)
+
         
         
         
@@ -413,8 +429,8 @@ def check_if_syncblock_fallsin_videosyncfile(start, end, all_timestamps):
     None 
 
     '''
-    start_is_present = start in all_timestamps
-    end_is_present = end in all_timestamps
+    start_is_present = np.sum(start==all_timestamps) > 0
+    end_is_present = np.sum(end==all_timestamps) > 0
     
     if not start_is_present:
         raise InvalidAnnotationPoint('Start point of annotation is not within the videosync file')
