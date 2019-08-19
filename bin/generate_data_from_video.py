@@ -155,7 +155,11 @@ def get_lamp_and_timestamp(each_img, **kwargs):
 
                        The number of pixels to crop in the following order:
                        to the left of, above, to the right of and below. 
-    
+
+    read_timestamp : Boolean.
+                      Whether timestamps need to be read or not. 
+                      Defaults to True. 
+
     measure_led : function
                   A custom function to measure the led intensity of
                   the cropped patch. 
@@ -172,22 +176,26 @@ def get_lamp_and_timestamp(each_img, **kwargs):
     '''
     try:
         im = Image.fromarray(each_img)
-        # CROP THE TIMESTAMP OUT
-        timestamp_region = kwargs.get('timestamp_border')
-        cropped_img = ImageOps.crop(im, timestamp_region).resize((1600,200))
-        P = np.array(cropped_img)
-        P_mono = rgb2gray(P)
         
-        block_size = 11
-        P_bw = threshold_local(P_mono, block_size,
-                                             method='mean')
-        thresh = kwargs.get('bw_threshold', 0.65)
-        P_bw[P_bw>=thresh] = 1
-        P_bw[P_bw<thresh] = 0
-        input_im = np.uint8(P_bw*255)
+        if kwargs.get('read_timestamp', True):
         
-        text = pytesseract.image_to_string(Image.fromarray(input_im),
-                                           config='digits')
+            timestamp_region = kwargs.get('timestamp_border')
+            cropped_img = ImageOps.crop(im, timestamp_region).resize((1600,200))
+            P = np.array(cropped_img)
+            P_mono = rgb2gray(P)
+            
+            block_size = 11
+            P_bw = threshold_local(P_mono, block_size,
+                                                 method='mean')
+            thresh = kwargs.get('bw_threshold', 0.65)
+            P_bw[P_bw>=thresh] = 1
+            P_bw[P_bw<thresh] = 0
+            input_im = np.uint8(P_bw*255)
+            
+            text = pytesseract.image_to_string(Image.fromarray(input_im),
+                                               config='digits')
+        else:
+            text = np.nan
         # calculate LED buld intensity:
         measure_led_intensity = kwargs.get('measure_led', np.max)
         led_intensity = measure_led_intensity(ImageOps.crop(im,kwargs['led_border']))
