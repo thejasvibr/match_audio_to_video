@@ -206,8 +206,9 @@ def get_lamp_and_timestamp(each_img, **kwargs):
 
 if __name__ == '__main__':
     
-    annotations_df = pd.read_csv('example_data/eg_annotations.csv')
+    annotations_df = pd.read_csv('../example_data/eg_annotations.csv')
     # Since it's a small video with only 1370 frames - we'll run the whole thing! This could take a couple of minutes
-    generate_videodata_from_videofiles(annotations_df, end_frame=50)
+    generate_videodata_from_videofiles(annotations_df, end_frame=200,
+                                       measure_led=np.sum)
 
 

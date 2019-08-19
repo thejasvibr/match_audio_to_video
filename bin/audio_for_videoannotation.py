@@ -117,10 +117,13 @@ def match_video_sync_to_audio(video_sync,
 
     Returns
     -------
-    matched_audio : N_channels + 1 x Msamples np.array.
+    matched_audio : N_channels + 1 x Msamples np.array if succesfule. None if not.
                     The matched audio is an array with
                     the matched audio and the upsampled video sync signal 
                     attached along with it. 
+                    When a prop
+
+    
                     
     '''
     # load video sync signal and annotation block
@@ -143,23 +146,32 @@ def match_video_sync_to_audio(video_sync,
     # cross-correlate video sync signal with 
     best_match_to_syncblock  = get_best_audio_match(upsampled_video_sync, audio_folder, 
                                  **kwargs)
-    # extract the audio only relevant to the annotation
-    samples_in_annotation = upsampled_annotation_block.astype('bool')
-    annotation_audio = best_match_to_syncblock[samples_in_annotation, :]
-    matched_audio = add_video_sync_channel(annotation_audio, 
-                                         upsampled_video_sync,
-                                         samples_in_annotation)
-    
-    audio_video_match = calculate_AV_match(matched_audio)
-    
-    av_match_threshold = kwargs.get('crosscorr_threshold', 0.5)
-    if audio_video_match <= av_match_threshold:   
-        warning_msg = 'The AV sync may not be very great - please check again. The value was :' + str(audio_video_match)
-        warnings.warn(warning_msg, stacklevel=1)
+    if best_match_to_syncblock is not None:
+        # extract the audio only relevant to the annotation
+        samples_in_annotation = upsampled_annotation_block.astype('bool')
+        annotation_audio = best_match_to_syncblock[samples_in_annotation, :]
+        matched_audio = add_video_sync_channel(annotation_audio, 
+                                             upsampled_video_sync,
+                                             samples_in_annotation)
+        
+        syncblock_audio = np.column_stack((best_match_to_syncblock, 
+                                           set_between_pm1(upsampled_video_sync)))
+        
+        audio_video_match = calculate_AV_match(syncblock_audio)
+        
+        av_match_threshold = kwargs.get('crosscorr_threshold', 0.5)
+        if audio_video_match <= av_match_threshold:   
+            warning_msg = 'The AV sync may not be very great - please check again. The value was :' + str(audio_video_match)
+            warnings.warn(warning_msg, stacklevel=1)
+        else:
+            print('AV Sync was above threshold: ', audio_video_match)
+        
+        return(matched_audio, syncblock_audio, 
+                       audio_video_match)
     else:
-        print('AV Sync was above threshold: ', audio_video_match)
-    
-    return(matched_audio, audio_video_match)
+        warnings.warn('Proper macthing audio segment not found, moving to next')
+        return(None, np.nan, np.nan)
+
 
 
 def get_videosync(videosync_df):
@@ -288,11 +300,16 @@ def get_best_audio_match(upsampled_video_sync, audio_folder,
     contiguous= kwargs.get('contiguous_files', True)
     if contiguous:
         # find the matching audio 
-        best_audio_match  = search_for_best_fit(upsampled_video_sync,
+        try:
+            best_audio_match  = search_for_best_fit(upsampled_video_sync,
                                                             matching_audio_files,
                                                             **kwargs)
+        except:
+            print('Unable to get proper audio match for video segment!')
+            best_audio_match = None
+            
     else:
-        raise Exception('Non contiguous file cross correlation not yet implemented!!')
+        raise NotYetImplemented('Non contiguous file cross correlation not yet implemented!!')
     
     return(best_audio_match)
                 
@@ -581,6 +598,9 @@ def split_audio_to_chunks(recording_name, sync_audio, video_sync_signal, multich
     chunk_ids: list with strings
     '''
     number_chunks = int(np.ceil(sync_audio.shape[0]/float(video_sync_signal.size)))
+    if number_chunks <= 1 :
+        raise NotYetImplemented('The video sync signal is longer than the audio file - this has not been implemented yet!')
+
     if not  multichannel:
         chunks = np.array_split(sync_audio, number_chunks)
     else:
@@ -661,11 +681,13 @@ def check_for_proper_indices(inds, X):
     '''
     '''
     numsamples, _ = X.shape
-    if np.any(inds)<0:
+    if np.any(np.array(inds)<0):
         raise IndexError('There are negative indices - please check if audio falls within relevant video sync')
-    if np.any(inds) >= numsamples:
+    if np.any(np.array(inds)>= numsamples):
         raise IndexError('Calculated indices extend beyond the current audio chunk - please check if the video sync falls within audio')
 
+class NotYetImplemented(ValueError):
+    pass
 
 if __name__ == '__main__':
         

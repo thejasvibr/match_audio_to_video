@@ -50,7 +50,7 @@ def video_sync_over_annotation_block(annotation, video_sync_data,
 
     Keyword Arguments
     -----------------
-    target_commonfps : int >0.
+    common_fps : int >0.
                        If the number of frames in each second deviates from
                        the target_commonfps - the LED signal is resampled 
                        to match it. 
@@ -106,10 +106,13 @@ def video_sync_over_annotation_block(annotation, video_sync_data,
         output_filename = os.path.join(output_folder,'common_fps_video_sync'+unique_id+'.csv')
         videosync_commonfps.to_csv(output_filename)
         
-        print('SAVED IT ALL!!!' + unique_id)
+        print('Saved annotation :' + unique_id)
     else:
         print(annotation)
-        warnings.warn('could not bring above annotation to common fps')   
+        warnings.warn('could not bring above annotation to common fps,\
+                      please check a) if the corresponding audio file is present\
+                        b) if the ON/OFF of the light signal is clean \
+                          ')   
     return(success)
 
 
@@ -506,13 +509,18 @@ def attach_annotation_start_and_end(video_sync_data, target_timestamps,
     annotation_end = target_timestamps['annotation_block']['end_timestamp']
     end_frame = target_timestamps['annotation_block']['end_framenumber']
 
-    relative_start_infirstsecond = calculate_relative_frame_position(start_frame,
-                                                                 annotation_start,
-                                                                 video_sync_data['timestamp_verified'])
-
-    relative_time_in_lastsecond = calculate_relative_frame_position(end_frame,
-                                                                 annotation_end,
-                                                                 video_sync_data['timestamp_verified'])
+    try:
+        relative_start_infirstsecond = calculate_relative_frame_position(start_frame,
+                                                                     annotation_start,
+                                                                     video_sync_data['timestamp_verified'])
+    
+        relative_time_in_lastsecond = calculate_relative_frame_position(end_frame,
+                                                                     annotation_end,
+                                                                     video_sync_data['timestamp_verified'])
+    except:
+        raise 
+        ('Inconsistent annotation found: start time:', annotation_start, 'frame #' ,start_frame, 
+              'till', annotation_end, 'frame #',end_frame)
 
     set_annotation_start_end(videosync_commonfps, annotation_start, annotation_end,
                              relative_start_infirstsecond, relative_time_in_lastsecond,
