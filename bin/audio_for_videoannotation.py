@@ -421,7 +421,7 @@ def find_best_matching_doublechunk(audio_files_to_search,
             audio_chunks.insert(0,lastchunk)
             chunk_ids.insert(0,lastchunk_id)
         
-        print('first two chunks',chunk_ids[:2])
+        print('..transitioning to next file',chunk_ids[:2])
         maxcc, doublechunk_ids, lastchunk_id, lastchunk  = cross_correlate_chunks_contiguously(audio_chunks,
                                                                                             chunk_ids, 
                                                                                             upsampled_video_sync,
@@ -580,7 +580,7 @@ def split_audio_to_chunks(recording_name, sync_audio, video_sync_signal, multich
     chunks : list with np.arrays
     chunk_ids: list with strings
     '''
-    number_chunks = int(sync_audio.shape[0]/float(video_sync_signal.size))
+    number_chunks = int(np.ceil(sync_audio.shape[0]/float(video_sync_signal.size)))
     if not  multichannel:
         chunks = np.array_split(sync_audio, number_chunks)
     else:
@@ -628,7 +628,6 @@ def cross_correlate_chunks_contiguously(audio_chunks_to_cc, chunk_ids,
     maxcross_correlations = []
     doublechunk_ids = []
     spikey = kwargs.get('audio_sync_spikey', True)
-    print('Searching for best double chunk...')
     for one_chunk, next_chunk, one_id, next_id in tqdm(zip(audio_chunks_to_cc[:-1],
                                      audio_chunks_to_cc[1:],
                                      chunk_ids[:-1],
@@ -638,7 +637,7 @@ def cross_correlate_chunks_contiguously(audio_chunks_to_cc, chunk_ids,
         if spikey:
             raw_audio = np.concatenate((one_chunk, next_chunk))
             audio_sync_chunk = make_onoff_from_spikey(raw_audio,
-                                          **kwargs)
+                                           **kwargs)
         else:
             audio_sync_chunk = np.concatenate((one_chunk, next_chunk))
 
