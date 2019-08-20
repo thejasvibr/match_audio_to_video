@@ -44,7 +44,8 @@ def generate_videodata_from_videofiles(annotations_df, **kwargs):
             try:
                 kwargs['timestamp_border'] = parse_borders_in_annotation(annotation['timestamp_border'])
             except:
-                pass 
+                print('Unable to parse timestamp border ')
+
             print('gettin raw video data from '+video_name+'  now....')
             get_syncdata_for_a_videofile(annotation['video_path'], **kwargs)
             print('doen w getting raw video data ')
