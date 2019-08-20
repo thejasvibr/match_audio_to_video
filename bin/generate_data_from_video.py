@@ -8,6 +8,7 @@ import os
 import cv2
 import glob
 import time
+import pdb
 #import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -40,7 +41,10 @@ def generate_videodata_from_videofiles(annotations_df, **kwargs):
         else:
             kwargs['video_name'] = video_name
             kwargs['led_border'] = parse_borders_in_annotation(annotation['led_border'])
-            kwargs['timestamp_border'] = parse_borders_in_annotation(annotation['timestamp_border'])
+            try:
+                kwargs['timestamp_border'] = parse_borders_in_annotation(annotation['timestamp_border'])
+            except:
+                pass 
             print('gettin raw video data from '+video_name+'  now....')
             get_syncdata_for_a_videofile(annotation['video_path'], **kwargs)
             print('doen w getting raw video data ')
@@ -92,12 +96,16 @@ def parse_borders_in_annotation(border):
 def get_data_from_video(video_path, **kwargs):
     '''
     
-    Keyword Argument
-    
+    Keyword Arguments
+    -----------------    
     timestamp_border = (550, 50, 70, 990) # left, up, right, bottom
+    
     led_border = (867,1020,40,30)
+    
     end_frame : optional. End frame for reading the timestamp + LED signal
+    
     start_frame : optional. can get the timestamp reading to start from any arbitrary points
+    
     '''
     video = cv2.VideoCapture(video_path)
 
@@ -163,7 +171,7 @@ def get_lamp_and_timestamp(each_img, **kwargs):
     measure_led : function
                   A custom function to measure the led intensity of
                   the cropped patch. 
-                  Defaults to np.max if not given. 
+                  Defaults to np.sum if not given. 
                   eg. if there are saturated patches and very dark patches in 
                   and the led intensity tends to be somewhere in between 
                   tracking the median value with np.median
@@ -197,7 +205,7 @@ def get_lamp_and_timestamp(each_img, **kwargs):
         else:
             text = np.nan
         # calculate LED buld intensity:
-        measure_led_intensity = kwargs.get('measure_led', np.max)
+        measure_led_intensity = kwargs.get('measure_led', np.sum)
         led_intensity = measure_led_intensity(ImageOps.crop(im,kwargs['led_border']))
         return(text, led_intensity)
     except:
