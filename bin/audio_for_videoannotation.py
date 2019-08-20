@@ -228,12 +228,75 @@ def get_fs_from_audiofiles(audio_folder,**kwargs):
 
 def look_for_matching_audio_files(audio_folder, **kwargs):
     '''
+    
+    Keyword Arguments
+    -----------------
+    
+    audio_fileformat : 
+    
+    file_subset : tuple.
+                  Allows user to provide a custom range of files 
+                  within which to look for the matching audio. 
+                  See get_file_series
+                    
+    
     '''
     file_format = kwargs.get('audio_fileformat', '*.WAV')
     search_pattern = os.path.join(audio_folder,file_format)
-    matching_files = glob.glob(search_pattern)
-    return(matching_files)
     
+    
+    subset_range = kwargs.get('file_subset', False)
+    if subset_range:
+        all_files = glob.glob(search_pattern)
+        matching_files = get_file_series(subset_range, all_files)
+    
+    else:
+        matching_files = glob.glob(search_pattern)
+        
+    
+    return(matching_files)
+
+
+def get_file_series(fname_range, all_filenames):
+    '''
+    Parameters
+    ---------
+    fname_range : tuple with 2 strings.
+                  Filename or parts of file name that 
+                  allow sufficiently unique identification. 
+
+
+    
+    '''
+    start, stop = fname_range
+    sorted_files = sorted(all_filenames)
+    
+    start_index = get_matching_index(sorted_files, start)
+    stop_index =  get_matching_index(sorted_files, stop)
+    
+    if np.logical_or(start_index.size>1, stop_index.size>1):
+        raise CheckFileRangeID('Multiple matching entries found - please provide a more unique file name identifier')
+    
+    try:
+        full_file_list = sorted_files[int(start_index):int(stop_index)+1]
+    except:
+        print(start_index, stop_index,'WAAAS')
+        raise CheckFileRangeID('Unable to match given substrings to file names in folder - please check again!')
+    
+    return(full_file_list)
+
+
+def get_matching_index(all_names, substring):
+    '''
+    '''
+    present = map(lambda X: substring in X, all_names)
+    if sum(present)>0:
+        return(np.where(present)[0])
+    else:
+        return(np.array([]))
+
+
+
 def upsample_signal(input_signal, resampling_factor, 
                     annotation=False):
     '''upsamples by repetition -- I guess its good mainly when 
@@ -689,19 +752,22 @@ def check_for_proper_indices(inds, X):
 class NotYetImplemented(ValueError):
     pass
 
+class CheckFileRangeID(ValueError):
+    pass
+
 if __name__ == '__main__':
         
-    all_commonfps = glob.glob('example_data/common_fps*') # get all the relevant common_fps_sync files
-    audio_folder = 'example_data/audio/' # the current folder
-    kwargs= {}
-    kwargs['audio_fileformat'] = '*.wav'
-    kwargs['contiguous_files'] = True
-    kwargs['audio_sync_spikey'] = False
-    # generate the 
-    each_commonfps = all_commonfps[0]
-    video_sync = pd.read_csv(each_commonfps)
-    best_audio, cc = match_video_sync_to_audio(video_sync, audio_folder,
-                                           **kwargs)
+#    all_commonfps = glob.glob('example_data/common_fps*') # get all the relevant common_fps_sync files
+#    audio_folder = 'example_data/audio/' # the current folder
+#    kwargs= {}
+#    kwargs['audio_fileformat'] = '*.wav'
+#    kwargs['contiguous_files'] = True
+#    kwargs['audio_sync_spikey'] = False
+#    # generate the 
+#    each_commonfps = all_commonfps[0]
+#    video_sync = pd.read_csv(each_commonfps)
+#    best_audio, cc = match_video_sync_to_audio(video_sync, audio_folder,
+#                                           **kwargs)
 #    sf.write('example_data/audio/matching_sync_'+str(5693)+'.WAV', best_audio, 
 #             samplerate =kwargs.get('audio_fs',100000))
 #   plotsamples = 5000000
@@ -709,3 +775,4 @@ if __name__ == '__main__':
 #    plt.plot(video[:plotsamples], label='sync block video')
 #    plt.plot(audio[:plotsamples,-1], label='sync block audio')
 #    plt.legend()
+    matches = get_file_series(fname_range, all_files_numeric)

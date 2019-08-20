@@ -6,8 +6,9 @@ Created on Mon Aug 12 14:26:34 2019
 @author: tbeleyur
 """
 import sys 
-sys.path.append('..//')
+sys.path.append('..//bin//')
 import unittest
+import string
 import pandas as pd
 import soundfile as sf
 import scipy.signal  as signal 
@@ -154,7 +155,7 @@ class test_match_video_sync_to_audio(unittest.TestCase):
     def test_check_number_samples(self):
         '''        
         '''
-        matched_audio, _ = match_video_sync_to_audio(self.videosync_df, 
+        matched_audio, _, _ = match_video_sync_to_audio(self.videosync_df, 
                                   './', **self.kwargs)
         exp_duration = sum(self.videosync_df['annotation_block'])/self.kwargs['common_fps']
         exp_samples = int(self.kwargs['audio_fs']*exp_duration)
@@ -171,7 +172,7 @@ class test_match_video_sync_to_audio(unittest.TestCase):
         self.videosync_df['annotation_block']= False
         self.videosync_df.loc[20:45,'annotation_block'] = True
         
-        matched_audio, _ = match_video_sync_to_audio(self.videosync_df, 
+        matched_audio, _, _ = match_video_sync_to_audio(self.videosync_df, 
                                   './', **self.kwargs)
         exp_duration = sum(self.videosync_df['annotation_block'])/self.kwargs['common_fps']
         exp_samples = int(self.kwargs['audio_fs']*exp_duration)
@@ -182,19 +183,46 @@ class test_match_video_sync_to_audio(unittest.TestCase):
         sf.write('test_results_2.WAV',matched_audio,samplerate=self.kwargs['audio_fs'])
         
 
-
-
-class test_ifvideosync_channel_is_added(unittest.TestCase):
+class CheckingIfFileSubsettingWorks(unittest.TestCase):
+    '''
+    '''
     def setUp(self):
         '''
         '''
-        
-    def test_basic(self):
-        '''
-        '''
+        self.all_files_numeric = [ 'T0000'+str(i)+'.WAV'   for i in range(100,200)]
+        self.all_files_alphabetic = ['T0000'+each+'.WAV' for each in string.ascii_lowercase]
     
+    def test_simple_numeric(self):
+        fname_range = ('100','180')
+        matched_files  = get_file_series(fname_range, self.all_files_numeric)
+        print(matched_files,'MIAOW')
+        self.assertEqual(len(matched_files), 81)
         
-            
+        self.assertEqual(matched_files[0],self.all_files_numeric[0])
+    
+    def test_simple_alphabets(self):
+        fname_range = ('a','z')
+        matched_files  = get_file_series(fname_range, self.all_files_alphabetic)
+        
+        self.assertEqual(len(matched_files), 26)
+        self.assertEqual(matched_files[0],self.all_files_alphabetic[0])
+
+    def test_wrong_entry(self):
+        fname_range = ('!@#','!%^')
+        with self.assertRaises(CheckFileRangeID) as context:
+            get_file_series(fname_range, self.all_files_numeric)
+        
+        self.assertTrue('Unable to match' in context.exception[0])
+                       
+    def test_overgeneral_entry(self):
+        fname_range = ('74','9')
+        with self.assertRaises(CheckFileRangeID) as context:
+            get_file_series(fname_range, self.all_files_numeric)
+        
+        
+        self.assertTrue('Multiple matching entries found' in context.exception[0])
+        
+        
             
             
 if __name__ =='__main__':
