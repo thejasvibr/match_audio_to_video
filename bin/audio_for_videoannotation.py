@@ -18,8 +18,6 @@ import numpy as np
 import pandas as pd
 import scipy.signal as signal
 import soundfile as sf
-from tqdm import tqdm
-#import matplotlib.pyplot as plt
 #plt.rcParams['agg.path.chunksize'] = 10000
 
 from av_sync import get_audio_sync_signal  as make_onoff_from_spikey
@@ -129,20 +127,20 @@ def match_video_sync_to_audio(video_sync,
     # load video sync signal and annotation block
     video_sync_signal, annotation_block, video_fps = get_videosync(video_sync)
     print('video_fps obtained is :', video_fps)
-    print('videosync_size')
     # get audio sampling rate 
     audio_fs = kwargs.get('audio_fs', get_fs_from_audiofiles(audio_folder, 
                                                           **kwargs))
 
     resampling_factor = int(audio_fs/float(video_fps))
     if resampling_factor < 1:
-        raise ValueError('Audio frame rate is lower than video frame rate --not implemented')
+        raise NotYetImplemented('Audio frame rate is lower than video frame rate --not implemented')
 
     # upsample video sync signal 
     upsampled_video_sync = upsample_signal(video_sync_signal, resampling_factor)
 
     upsampled_annotation_block = upsample_signal(annotation_block, resampling_factor,
                                                      annotation=True)
+    print('.....finding best audio segment.....')
     # cross-correlate video sync signal with 
     best_match_to_syncblock  = get_best_audio_match(upsampled_video_sync, audio_folder, 
                                  **kwargs)
@@ -165,7 +163,7 @@ def match_video_sync_to_audio(video_sync,
             warnings.warn(warning_msg, stacklevel=1)
         else:
             print('AV Sync was above threshold: ', audio_video_match)
-        
+
         return(matched_audio, syncblock_audio, 
                        audio_video_match)
     else:
@@ -501,7 +499,7 @@ def find_best_matching_doublechunk(audio_files_to_search,
             audio_chunks.insert(0,lastchunk)
             chunk_ids.insert(0,lastchunk_id)
         
-        print('..transitioning to next file',chunk_ids[:2])
+        #print('..transitioning to next file',chunk_ids[:2])
         maxcc, doublechunk_ids, lastchunk_id, lastchunk  = cross_correlate_chunks_contiguously(audio_chunks,
                                                                                             chunk_ids, 
                                                                                             upsampled_video_sync,
@@ -711,10 +709,10 @@ def cross_correlate_chunks_contiguously(audio_chunks_to_cc, chunk_ids,
     maxcross_correlations = []
     doublechunk_ids = []
     spikey = kwargs.get('audio_sync_spikey', True)
-    for one_chunk, next_chunk, one_id, next_id in tqdm(zip(audio_chunks_to_cc[:-1],
+    for one_chunk, next_chunk, one_id, next_id in zip(audio_chunks_to_cc[:-1],
                                      audio_chunks_to_cc[1:],
                                      chunk_ids[:-1],
-                                     chunk_ids[1:]), position=0, leave=True):
+                                     chunk_ids[1:]):
 
         doublechunk_id = '^'.join([one_id,next_id])
         if spikey:
