@@ -7,16 +7,19 @@ Created on Tue Aug 13 09:05:24 2019
 """
 import os
 import sys 
-sys.path.append('../../')
+sys.path.append('../../bin/')
 import glob
 import numpy as np 
 import soundfile as sf
 
 import av_sync
+from audio_for_videoannotation import get_file_series
 
-raw_audio_folder = '../../../usbdrive_point/'
+#raw_audio_folder ='/media/tbeleyur/THEJASVI_DATA_BACKUP_3/fieldwork_2018_002/horseshoe_bat/audio/2018-08-16/'
+raw_audio_folder = '/home/thejasvi/audio_mtpt/'
+all_wav_files = glob.glob(raw_audio_folder+'*.WAV')
 
-audiofiles = glob.glob(raw_audio_folder+'*07.WAV')
+audiofiles = get_file_series(('674','744'), all_wav_files)
 
 for each_file in audiofiles:
     print(each_file)
@@ -25,7 +28,7 @@ for each_file in audiofiles:
     reconstr_audio = av_sync.get_audio_sync_signal(sync, parallel=True,
                                            min_distance=int(fs*0.07*2))
     print('Done with reconstruction')
-    final_audio = np.column_stack((audio[:,0],sync, reconstr_audio))
+    final_audio = np.column_stack((audio[:,:],sync, reconstr_audio))
     file_name = os.path.split(each_file)[-1]
     sf.write('non_spikey_' + file_name, final_audio,
              samplerate=fs)
