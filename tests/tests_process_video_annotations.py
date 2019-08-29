@@ -76,10 +76,7 @@ class TestingAttachAnnotation(unittest.TestCase):
         start_relative_position = self.target_timestamps['annotation_block']['start_framenumber']/20
         expected_start_position = int(np.floor(start_relative_position*25))
         obstained_start_rel_pos= int(min(np.argwhere(self.video_commonfps['annotation_block']==True)))
-        
-        
-        expected_end_position = int()
-        
+
         self.assertEqual(expected_start_position, obstained_start_rel_pos)
     
     def test_checkproper_annotation_end(self):

@@ -5,6 +5,7 @@ Created on Tue Aug 13 09:05:24 2019
 
 @author: tbeleyur
 """
+import pdb
 import os
 import sys 
 sys.path.append('../../bin/')
@@ -27,8 +28,9 @@ for each_file in audiofiles:
     sync = audio[:,-1]
     reconstr_audio = av_sync.get_audio_sync_signal(sync, parallel=True,
                                            min_distance=int(fs*0.07*2))
+    pdb.set_trace()
     print('Done with reconstruction')
-    final_audio = np.column_stack((audio[:,:],sync, reconstr_audio))
+    final_audio = np.column_stack((audio, reconstr_audio))
     file_name = os.path.split(each_file)[-1]
     sf.write('non_spikey_' + file_name, final_audio,
              samplerate=fs)

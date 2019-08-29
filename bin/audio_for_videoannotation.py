@@ -119,10 +119,13 @@ def match_video_sync_to_audio(video_sync,
                     The matched audio is an array with
                     the matched audio and the upsampled video sync signal 
                     attached along with it. 
-                    When a prop
-
     
-                    
+    syncblock_audio : N_channels +1 x Nsamples np.array. where Msamples<=Nsamples. 
+                      The syncblock is at least as long as the minimum durations. 
+
+    audio_video_match : -1<=float<=1. 
+                      The cross correlation coefficient between the audio and 
+                      video channels. 
     '''
     # load video sync signal and annotation block
     video_sync_signal, annotation_block, video_fps = get_videosync(video_sync)
