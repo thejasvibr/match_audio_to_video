@@ -222,7 +222,9 @@ class CheckingIfFileSubsettingWorks(unittest.TestCase):
         
         self.assertTrue('Multiple matching entries found' in context.exception[0])
         
-        
+class test_if_audio_matching_works_across_files(unittest.TestCase):
+    '''
+    '''
             
             
 if __name__ =='__main__':

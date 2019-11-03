@@ -15,8 +15,10 @@ import glob
 import os
 import warnings
 import numpy as np 
+#np.fft.restore_all() # after suggestion from https://github.com/IntelPython/mkl_fft/issues/11
 import pandas as pd
 import scipy.signal as signal
+from tqdm import tqdm
 import soundfile as sf
 #plt.rcParams['agg.path.chunksize'] = 10000
 
@@ -61,7 +63,7 @@ def match_video_sync_to_audio(video_sync,
                                      the frame belongs to the 
                                      overall sync block.
 
-    
+
 
     audio_folder : string. 
                  Path to the folder containing the audio files to be matched.
@@ -140,6 +142,7 @@ def match_video_sync_to_audio(video_sync,
 
     # upsample video sync signal 
     upsampled_video_sync = upsample_signal(video_sync_signal, resampling_factor)
+    #upsampled_video_sync /= np.max(upsampled_video_sync) # normalise so values are between 0-1
 
     upsampled_annotation_block = upsample_signal(annotation_block, resampling_factor,
                                                      annotation=True)
@@ -371,6 +374,7 @@ def get_best_audio_match(upsampled_video_sync, audio_folder,
         except:
             print('Unable to get proper audio match for video segment!')
             best_audio_match = None
+            raise
             
     else:
         raise NotYetImplemented('Non contiguous file cross correlation not yet implemented!!')
@@ -396,6 +400,9 @@ def search_for_best_fit(upsampled_video_sync, audio_files_to_search,
                            The upsampled video sync corresponding 
                            to the sync block of the audio stream. 
 
+    audio_files_to_search : list with strings/paths of 
+                            all audio files to be searched. 
+
     Keyword Arguments
     -----------------
     audio_sync_spikey : Boolean 
@@ -404,19 +411,72 @@ def search_for_best_fit(upsampled_video_sync, audio_files_to_search,
     ----------
     best_matching_audio : Nchannels x Msamples np.array. 
     '''
-    ## get a broad area of the audio that matches
-    best_doublechunk_id = find_best_matching_doublechunk(audio_files_to_search,
-                                                         upsampled_video_sync,
-                                                         **kwargs)
+    ## do global search across all files 
+    all_max_of_cc = {}
+    sync_channel  = kwargs.get('audiosync_channel', -1)
+    folder_path = os.path.split(audio_files_to_search[0])[:-1][0]
+    for recording, next_recording in tqdm(zip(audio_files_to_search[:-1], 
+                                         audio_files_to_search[1:])):
+        filenames = map(get_filename, [recording, next_recording])
+        file12_ID = '*'.join(filenames)
+        audio= read_syncaudio(recording, sync_channel)
+        next_audio= read_syncaudio(next_recording, sync_channel)
+        #pdb.set_trace()
+        cc = signal.correlate( np.concatenate((audio, next_audio)),
+                          upsampled_video_sync, 'same')
+        all_max_of_cc[file12_ID] = [np.max(cc), np.argmax(cc)]
+        #pdb.set_trace()
+        del audio, next_audio
+    
+    
+    # do local search :
+    all_cc_values = [each[0] for each in all_max_of_cc.values()]
+    all_cc_peaks = [each[1] for each in all_max_of_cc.values()]
+    highest_cc_value_index = np.argmax(all_cc_values)
+    best_file_pairs = all_max_of_cc.keys()[highest_cc_value_index]
+    best_file_pair_peak = all_cc_peaks[highest_cc_value_index]
+    #pdb.set_trace()
+    # load all channels now
+    full_audio = get_full_audio(folder_path, best_file_pairs)
+    print('Best file pairs are: ',best_file_pairs)
+    best_matching_audio = take_subsection_around_peak(full_audio, 
+                                                      best_file_pair_peak,
+                                                      upsampled_video_sync)
 
-    print('Best doublechunk segment is:' + best_doublechunk_id)
-    print('\n Starting refined search within best doublechunk segment...')
-    # refine the search and now get the actual corresponding 
-    best_matching_audio = do_refined_search(audio_files_to_search,
-                                            upsampled_video_sync,
-                                            best_doublechunk_id, **kwargs)
-    print('Done with refined search - best matching audio returned')
     return(best_matching_audio)
+
+get_filename = lambda X : os.path.split(X)[-1]
+
+def get_full_audio(folder, file_pair):
+    '''
+    '''
+    file0, file1 = file_pair.split('*')
+    audio, fs = sf.read(os.path.join(folder, file0))
+    audio1, fs = sf.read(os.path.join(folder, file1))
+    joint_audio = np.row_stack((audio, audio1))
+    return(joint_audio)
+
+def take_subsection_around_peak(Nchannel_audio, peak_index,
+                                upsampled_video):
+    '''
+    '''
+    video_led_num_samples = upsampled_video.size
+    audio_num_samples = Nchannel_audio.shape[0]
+    start = int(peak_index - np.around(video_led_num_samples*0.5))
+    end = start+video_led_num_samples
+    #pdb.set_trace()
+    if np.logical_or(start<0, end>audio_num_samples):
+        raise IndexError('Start and end indices around peak do not make sense!! \
+			  start index: %d\
+		          end index: %d'%(start,end))
+    else:
+        print('Start and end indices around peak: \
+                 start index: %d\
+		          end index: %d\
+                  total samples:%d'%(start,end,audio_num_samples))
+        fullchannel_segment = Nchannel_audio[start:end, :]
+        return(fullchannel_segment)
+        
 
 def add_video_sync_channel(annotation_audio, 
                            whole_video_sync, 
@@ -492,7 +552,7 @@ def find_best_matching_doublechunk(audio_files_to_search,
     all_max_of_cc = []
     all_doublechunk_ids = []
     sync_channel  = kwargs.get('audiosync_channel',-1)
-    for i, recording in enumerate(audio_files_to_search):
+    for i, recording in enumerate(tqdm(audio_files_to_search)):
         file_name = os.path.split(recording)[-1]
         audio= read_syncaudio(recording, sync_channel)
         audio_chunks, chunk_ids = split_audio_to_chunks(file_name, 
@@ -503,6 +563,7 @@ def find_best_matching_doublechunk(audio_files_to_search,
             chunk_ids.insert(0,lastchunk_id)
         
         #print('..transitioning to next file',chunk_ids[:2])
+        kwargs['i'] = i
         maxcc, doublechunk_ids, lastchunk_id, lastchunk  = cross_correlate_chunks_contiguously(audio_chunks,
                                                                                             chunk_ids, 
                                                                                             upsampled_video_sync,
@@ -662,9 +723,9 @@ def split_audio_to_chunks(recording_name, sync_audio, video_sync_signal, multich
     chunk_ids: list with strings
     '''
     number_chunks = int(np.ceil(sync_audio.shape[0]/float(video_sync_signal.size)))
+    #number_chunks = 1 # hack to see if chunking is the problem
     if number_chunks <= 1 :
         raise NotYetImplemented('The video sync signal is longer than the audio file - this has not been implemented yet!')
-
     if not  multichannel:
         chunks = np.array_split(sync_audio, number_chunks)
     else:
@@ -675,7 +736,6 @@ def split_audio_to_chunks(recording_name, sync_audio, video_sync_signal, multich
         chunks = []
         for each_chunk in range(number_chunks):
             chunks.append(np.column_stack([channel[each_chunk] for channel in channels_chunked ]))
-        
     chunk_ids = [recording_name+'_'+str(number) for number, chunklet in enumerate(chunks)]
     return(chunks, chunk_ids)
     
@@ -724,9 +784,10 @@ def cross_correlate_chunks_contiguously(audio_chunks_to_cc, chunk_ids,
                                            **kwargs)
         else:
             audio_sync_chunk = np.concatenate((one_chunk, next_chunk))
-
         cc = signal.correlate(audio_sync_chunk, upsampled_video_sync, 'full')
         maxcross_correlations.append(np.max(cc))
+#        if kwargs['i']==59:
+#            pdb.set_trace()
         
         doublechunk_ids.append(doublechunk_id)
     return(maxcross_correlations, doublechunk_ids, next_id, next_chunk)
@@ -756,24 +817,38 @@ class NotYetImplemented(ValueError):
 class CheckFileRangeID(ValueError):
     pass
 
+class FailedAudioMatch(ValueError):
+    pass
+
+
 if __name__ == '__main__':
-        
-#    all_commonfps = glob.glob('example_data/common_fps*') # get all the relevant common_fps_sync files
-#    audio_folder = 'example_data/audio/' # the current folder
-#    kwargs= {}
-#    kwargs['audio_fileformat'] = '*.wav'
-#    kwargs['contiguous_files'] = True
-#    kwargs['audio_sync_spikey'] = False
-#    # generate the 
-#    each_commonfps = all_commonfps[0]
-#    video_sync = pd.read_csv(each_commonfps)
-#    best_audio, cc = match_video_sync_to_audio(video_sync, audio_folder,
-#                                           **kwargs)
-#    sf.write('example_data/audio/matching_sync_'+str(5693)+'.WAV', best_audio, 
-#             samplerate =kwargs.get('audio_fs',100000))
-#   plotsamples = 5000000
-#    plt.figure()
-#    plt.plot(video[:plotsamples], label='sync block video')
-#    plt.plot(audio[:plotsamples,-1], label='sync block audio')
-#    plt.legend()
-    matches = get_file_series(fname_range, all_files_numeric)
+
+    import glob 
+    import soundfile as sf
+    from audio_for_videoannotation import match_video_sync_to_audio
+    
+    #all_commonfps = glob.glob('common_fps_video_sync*') # get all the relevant common_fps_sync files
+    all_commonfps = glob.glob('../experimental_testdata/horseshoebat_data/common_fps/common_fps*')
+    audio_folder = '../experimental_testdata/horseshoebat_data/test_audio/' # the current folder
+    audiosync_folder = '../experimental_testdata/horseshoebat_data/sync_audio/'
+    audioannotation_folder = '../experimental_testdata/horseshoebat_data/annotation_audio/'
+    fs = 250000 # change according to the recording sampling rate!! 
+    # generate the 
+    all_ccs = []
+    files_to_run = ['../experimental_testdata/horseshoebat_data/common_fps/common_fps_video_sync56_116.csv']#['../experimental_testdata/horseshoebat_data/common_fps/common_fps_video_sync56_137.csv']
+    #for somenumber, each_commonfps in enumerate(files_to_run):
+    each_commonfps = files_to_run[0]
+    print(each_commonfps)
+    video_sync = pd.read_csv(each_commonfps)
+    best_audio, syncblock_audio, crosscoef = match_video_sync_to_audio(video_sync, audio_folder, audio_fileformat='*.WAV',
+                                           audio_sync_spikey=False)
+    all_ccs.append(crosscoef)
+    fname  = os.path.split(each_commonfps)[-1]
+    annotation_id = '-'.join(os.path.split(fname)[-1].split('_')[-2:])
+                                                                 
+    try:
+        sf.write(audiosync_folder+'matching_sync_'+annotation_id+'.WAV', syncblock_audio,fs)
+        sf.write(audioannotation_folder+'matching_annotaudio_'+annotation_id+'.WAV', best_audio,fs)
+    except:
+        print('Could not save ', each_commonfps)
+    

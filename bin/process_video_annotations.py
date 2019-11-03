@@ -100,7 +100,7 @@ def video_sync_over_annotation_block(annotation, video_sync_data,
                                                                   video_sync_data,
                                                          **kwargs)
     if success:
-        output_folder = kwargs.get('output_folder','.\\')
+        output_folder = kwargs.get('output_folder','./')
         # save the common fps video sync signal 
         unique_id = str(annotation['annotation_id'])
         output_filename = os.path.join(output_folder,'common_fps_video_sync'+unique_id+'.csv')
