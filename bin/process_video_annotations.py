@@ -626,6 +626,20 @@ def get_timestamps_in_between(df, start, end, **kwargs):
 
 def make_posix_time(timestamp, **kwargs):
     '''
+    Parameters
+    -----------
+    timestamp : str.
+                The timestamp to be parsed . eg. '2019-09-08 20:02:10'
+
+    Keyword Arguments
+    -----------------
+    timestamp_pattern : str.
+                        the timestamp format to parse the timestamp. 
+                        eg. '%Y-%m-%d %H:%M:%S'
+                        would allow proper parsing of the timestamp
+                        '2019-09-08 20:02:10'
+                        See the formats accepted by datetime.strptime
+                        for more information
     '''
     dt_timstamp = dt.datetime.strptime(timestamp, kwargs['timestamp_pattern'])
     posix_time = time.mktime(dt_timstamp.timetuple())

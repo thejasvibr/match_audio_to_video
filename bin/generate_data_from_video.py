@@ -108,6 +108,7 @@ def get_data_from_video(video_path, **kwargs):
     start_frame : optional. can get the timestamp reading to start from any arbitrary points
     
     '''
+    print(video_path)
     video = cv2.VideoCapture(video_path)
 
     print('starting frame reading')
@@ -126,8 +127,7 @@ def get_data_from_video(video_path, **kwargs):
     for i in  trange(start_frame, end_frame, desc='Frames read', 
                      position=0, leave=True):
         successful, frame = video.read()
-        #        if np.remainder(i,50)==0:
-        #            print('reading '+str(i)+'th frame')
+
         if not successful:
             frame = np.zeros((1080,944,3))
             print('Couldnt read frame number' + str(i))
@@ -185,39 +185,93 @@ def get_lamp_and_timestamp(each_img, **kwargs):
     '''
     try:
         im = Image.fromarray(each_img)
+        text = read_timestamp(im, **kwargs)
         
-        if kwargs.get('read_timestamp', True):
-        
-            timestamp_region = kwargs.get('timestamp_border')
-            cropped_img = ImageOps.crop(im, timestamp_region).resize((1600,200))
-            P = np.array(cropped_img)
-            P_mono = rgb2gray(P)
-            
-            block_size = 11
-            P_bw = threshold_local(P_mono, block_size,
-                                                 method='mean')
-            thresh = kwargs.get('bw_threshold', 0.65)
-            P_bw[P_bw>=thresh] = 1
-            P_bw[P_bw<thresh] = 0
-            input_im = np.uint8(P_bw*255)
-            
-            text = pytesseract.image_to_string(Image.fromarray(input_im),
-                                               config='digits')
-        else:
-            text = np.nan
-        # calculate LED buld intensity:
         measure_led_intensity = kwargs.get('measure_led', np.sum)
-        led_intensity = measure_led_intensity(ImageOps.crop(im,kwargs['led_border']))
+        cropped_led_ROI = ImageOps.crop(im,kwargs['led_border'])
+        led_intensity = measure_led_intensity(cropped_led_ROI)
         return(text, led_intensity)
+
     except:
          print('Failed reading' + 'file:')
          return(np.nan, np.nan)
 
+def read_timestamp(full_image, **kwargs):
+    '''
+    Parameters
+    -----------
+    full_image : 2D ImageOps image with the whole video frame
+    
+    Keyword Arguments
+    ----------------
+    timestamp_border : tuple with 4 entries
+
+    custom_processing : function that accepts the cropped 2D image
+                        and other possible keywords
+                        Defaults to the 'default_ROI_processing'
+                        function in this module.
+
+    Returns
+    -------
+    
+    
+    '''
+        
+    if kwargs.get('read_timestamp', True):   
+        timestamp_region = kwargs.get('timestamp_border')
+        cropped_image = ImageOps.crop(full_image, timestamp_region)
+
+        processing_function = kwargs.get('custom_processing', 
+                                             default_ROI_processing)
+        
+        processed_image = processing_function(cropped_image,**kwargs)
+        text = pytesseract.image_to_string(processed_image,
+                                           config='digits')
+    else:
+        text = np.nan
+
+    return(text)
+
+
+
+
+def default_ROI_processing(image, **kwargs):
+    '''
+    
+    Parameters
+    ----------
+    image : ImageOps image
+
+    
+    Returns
+    ---------
+    output_im : ImageOps image post-processing
+    '''
+    cropped_img = image.resize((1600,200))
+    P = np.array(cropped_img)
+    P_mono = rgb2gray(P)
+    
+    block_size = 11
+    P_bw = threshold_local(P_mono, block_size,
+                                         method='mean')
+    thresh = kwargs.get('bw_threshold', 0.65)
+    P_bw[P_bw>=thresh] = 1
+    P_bw[P_bw<thresh] = 0
+    output_im = np.uint8(P_bw*255)
+    output_imageops = Image.fromarray(output_im)
+    return(output_imageops)
+
+
+def do_nothing_processing(image, **kwargs):
+    '''
+    '''
+    return(image)
+
 if __name__ == '__main__':
     
     annotations_df = pd.read_csv('../example_data/eg_annotations.csv')
-    # Since it's a small video with only 1370 frames - we'll run the whole thing! This could take a couple of minutes
-    generate_videodata_from_videofiles(annotations_df, end_frame=200,
+    generate_videodata_from_videofiles(annotations_df, start_frame=2000,
+                                       end_frame=2100,
                                        measure_led=np.sum)
 
 

@@ -7,6 +7,8 @@ Created on Wed Aug  7 14:34:22 2019
 @author: tbeleyur
 """
 import argparse
+import sys 
+sys.setrecursionlimit(90000)
 import cv2 
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button, TextBox, RadioButtons
@@ -18,8 +20,9 @@ parser.add_argument('-v','-video_location',type=str, dest='video_path',
 args = parser.parse_args()
 
 class InteractivePlot():
-    def __init__(self):
+    def __init__(self,figure_axes):
         self.index = 0
+        self.figure_axes = figure_axes
     
     def load_video(self):
         self.video = cv2.VideoCapture(self.video_path)
@@ -28,10 +31,10 @@ class InteractivePlot():
     def plot_image(self):
         self.video.set(1,self.index)
         success, self.frame = self.video.read()
-        a0.imshow(self.frame)
+        self.figure_axes.imshow(self.frame)
         plt.xticks([])
         plt.yticks([])
-        a0.set_title('Frame number: '+str(self.index+1))
+        self.figure_axes.set_title('Frame number: '+str(self.index+1))
         plt.show()
     
     def move_forward(self,event):
@@ -65,7 +68,7 @@ class InteractivePlot():
 plt.figure()
 a0 = plt.subplot(111)
     
-ip = InteractivePlot()
+ip = InteractivePlot(a0)
 
 axnext = plt.axes([0.81,0.05,0.1,0.075])
 axprev = plt.axes([0.65,0.05,0.1,0.075])
@@ -82,8 +85,10 @@ prev_button.on_clicked(ip.move_backward)
 radio.on_clicked(ip.get_border)
 
 if __name__ == '__main__':
-    # NOTE TO USER : change the ip.video_path if you want to run this from an interactive development environment 
-    # like spyder etc. and want to use another video
-    # uncomment: ip.video_path = 'example_data/example_video.avi'		
+    # NOTE TO USER : change the ip.video_path if you want to run this from an
+    # interactive development environment (IDE) like spyder etc. and want to use 
+    #another video -- see line below
+
+    # uncomment for IDE: ip.video_path = 'example_data/example_video.avi'		
     ip.video_path = args.video_path 
     ip.load_video()
