@@ -160,10 +160,10 @@ if __name__ =='__main__':
     video_sync_raw_path = eg.fileopenbox('Which file needs  timestamp-checking?',
                                        title='Choose video_sync file')
     raw_video_sync = pd.read_csv(video_sync_raw_path)
+    columns_available = raw_video_sync.columns
     
     timestamp_column = eg.choicebox('Which column to summarise?', 
-                                        choices=['timestamp',
-                                                 'timestamp_verified'])
+                                        choices=columns_available)
     
     #timestamp_format = eg.textbox('Enter the timestamp format')
     timestamp_format = '%Y-%m-%d %H:%M:%S'
