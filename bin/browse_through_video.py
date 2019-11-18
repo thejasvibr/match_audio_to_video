@@ -2,6 +2,12 @@
 # -*- coding: utf-8 -*-
 """ Get user inputs on regions where the light source and timestamps are 
 
+TODO:
+    > speed up the GUI by making a 'proper' interface without matplotlib. 
+      the matplotlib TextBox seems to be slowing things down mostly. 
+      (https://github.com/matplotlib/matplotlib/issues/8129) -- might disappear 
+      in a Python 3 implementation. 
+
 Created on Wed Aug  7 14:34:22 2019
 
 @author: tbeleyur
@@ -31,10 +37,12 @@ class InteractivePlot():
     def plot_image(self):
         self.video.set(1,self.index)
         success, self.frame = self.video.read()
-        self.figure_axes.imshow(self.frame)
+        imshow_axes = self.figure_axes.imshow(self.frame, interpolation='nearest', 
+                                                animated=True)
         plt.xticks([])
         plt.yticks([])
         self.figure_axes.set_title('Frame number: '+str(self.index+1))
+        imshow_axes.set_data(self.frame)
         plt.show()
     
     def move_forward(self,event):
