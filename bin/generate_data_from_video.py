@@ -75,7 +75,6 @@ def get_syncdata_for_a_videofile(video_path,**kwargs):
     
     timestamps, intensity = get_data_from_video(video_path, 
                                                            **kwargs)
-
     df = pd.DataFrame(data=[], index=range(1,len(timestamps)+1), 
                       columns=['frame_number','led_intensity',
                                'timestamp','timestamp_verified'])
@@ -83,8 +82,9 @@ def get_syncdata_for_a_videofile(video_path,**kwargs):
     df['led_intensity'] = intensity
     df['timestamp'] = timestamps
     df['frame_number'] = range(1,len(timestamps)+1)
-    df.to_csv('videosync_'+kwargs['video_name']+'_.csv',
-              encoding='utf-8')
+    print(kwargs['video_name'])
+    df.to_csv('videosync_'+kwargs['video_name']+'_.csv', encoding='utf-8')
+    
 
 def parse_borders_in_annotation(border):
     '''
@@ -331,6 +331,7 @@ def get_consensus_timestamp(full_image, **kwargs):
     for i, processing_function in enumerate(candidate_functions):
         kwargs['custom_processing'] = processing_function
         all_timestamp_predictions[i] = read_timestamp(full_image, **kwargs)
+        print(all_timestamp_predictions[i] )
 
     #print('all obtained outputs',all_timestamp_predictions)
     re_processed_timestamp = get_majority_prediction(all_timestamp_predictions
@@ -486,6 +487,54 @@ def simple_thresholding(image, **kwargs):
     simple_thresholded_image = Image.fromarray(simple_thresholded_image)
     return(simple_thresholded_image)
  
+    
+def inverse_thresholding(image, **kwargs):
+    '''
+    The brightest part of the image is typically the 
+    text itself. Use this to do an inverse thresholding
+    where the brightest parts of the text are converted to black. 
+    
+    Parameters
+    -----------
+    image : Image object 
+            cropped section with timestamp
+
+    Keyword Arguments
+    ------------------
+    simple_threshold : 0<=float<=100
+                       The percentile threshold between 0-100%ile of 
+                       all pixel values. 
+
+                       All pixels below the threshold are set to 0
+                       and all those >= are set to 255. 
+                       Defaults to the 90th percentile value. 
+
+    Returns
+    -------
+    simple_thresholded_image : Image object.
+                               same size as input 'image' variable
+    '''
+    grayscale = ImageOps.grayscale(image)
+    image_as_array = np.array(grayscale)
+    simple_threshold = kwargs.get('simple_threshold',90)
+    brightest_pixel_values = np.percentile(image_as_array, simple_threshold)
+     
+    simple_thresholded_image = np.ones(image_as_array.shape)
+    simple_thresholded_image[image_as_array>=brightest_pixel_values] = 0
+    simple_thresholded_image[image_as_array<brightest_pixel_values] = 255
+    simple_thresholded_image = np.int8(simple_thresholded_image)
+     
+    simple_thresholded_image = Image.fromarray(simple_thresholded_image)
+    return(simple_thresholded_image)
+
+def invert_image(image, **kwargs):
+    '''
+    '''
+    grayscale = ImageOps.grayscale(image)
+    inv = ImageOps.invert(grayscale)
+    return(inv)
+    
+
 def image_processing_sequence(original_image, 
                               functions, **kwargs):
     '''
@@ -534,6 +583,22 @@ def resize(image, **kwargs):
     
     return(taller_image)
 
+def resize_to_exact_dims(image, **kwargs):
+    '''
+    
+    Keyword Arguments
+    -----------------
+    final_dims : tuple/list with two entries indicating final 
+                 number of columns and rows. 
+                 This uses the Imageops.resize convention
+                 with (columns,rows) as the final size.
+
+    
+        
+    '''
+    resized_image = image.resize(kwargs['final_dims'])
+    return(resized_image)
+
 def resize_wider(image, **kwargs):
     '''
     '''
@@ -546,6 +611,39 @@ def do_nothing_processing(image, **kwargs):
     '''
     return(image)
     
+
+def segment_numbers(image, **kwargs):
+    '''Whenever there are timestamps burnt into the frame, this appears 
+    as white numbers. This implies that the pixel has a high value on all 
+    three channels. 
+    
+    Use this fact to generate a nice clean segmented image with only the 
+    numbers. 
+    '''
+    per_channel_pixel_threshold = kwargs.get('numeric_pixel_threshold', 230)
+    im = np.array(image)
+    rows, cols, channels = im.shape
+    true_timestamp = np.ones((rows,cols))*255
+
+    for row in range(rows):
+        for col in range(cols):
+            pixel = im[row,col,:]
+            if np.all(pixel>=per_channel_pixel_threshold):
+                true_timestamp[row,col] = 0
+    true_timestamp = true_timestamp.astype('uint8')
+
+    only_numbers = ImageOps.grayscale(Image.fromarray(true_timestamp))
+    return(only_numbers)
+
+def segment_numbers_and_resize(image, **kwargs):
+    '''
+    '''
+    resized_only_w_numbers = image_processing_sequence(image,
+                              [segment_numbers,
+                               resize_to_exact_dims],
+                               **kwargs)
+    return(resized_only_w_numbers)
+    
     
 
 def threshold_and_resize(image, **kwargs):
@@ -556,6 +654,20 @@ def threshold_and_resize(image, **kwargs):
                                                         resize],
                                                        **kwargs)
     return(thresholded_and_resized)
+
+def threshold_invert(image, **kwargs):
+    '''
+    '''
+    processed_image = image_processing_sequence(image,
+                                                       [simple_thresholding,
+                                                        invert_image],
+                                                       **kwargs)
+    return(processed_image)
+
+def change_white_to_black(image, **kwargs):
+    '''
+    '''
+    
 
 def adaptive_gaussian_thresholding(image,**kwargs):
     '''
