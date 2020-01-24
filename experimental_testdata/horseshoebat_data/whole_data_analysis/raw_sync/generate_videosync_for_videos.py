@@ -12,23 +12,34 @@ sys.path.append(module_folder)
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import scipy.signal as signal 
 
 
-from generate_data_from_video import generate_videodata_from_videofiles, default_ROI_processing
+from generate_data_from_video import generate_videodata_from_videofiles, segment_numbers_and_resize
 
 
-annotation_file = '../annotations/whole_video_annotations.csv'
-annotations = pd.read_csv(annotation_file)
+annotation_files = glob.glob('../annotations/'+'*.csv')
+print(annotation_files)
+file_index = 1
+annotations = pd.read_csv(annotation_files[file_index])
+print('processing...', annotation_files[file_index][-40:])   
+
+#STARTFRAME = 50000
 
 generate_videodata_from_videofiles(annotations, 
-                                   custom_processing=default_ROI_processing)
+                                   custom_processing=segment_numbers_and_resize,
+                                   final_dims=(1400,200),
+                                   numeric_pixel_threshold=225,)
+#                                   start_frame=STARTFRAME,
+#                                   end_frame=STARTFRAME+100)
 #
-#sync_files = glob.glob('*.csv')
-#print(sync_files)
-#df = pd.read_csv(sync_files[0])
+sync_files = glob.glob('*.csv')
+print(sync_files)
+df = pd.read_csv(sync_files[0])
 #
-#plt.figure()
-#plt.plot(df['led_intensity'])
+#standard_led = df_npsum['led_intensity']
 #
-#
-#print(df['timestamp'])
+plt.figure()
+plt.plot(df['led_intensity'])
+plt.show()
+print(df['timestamp'])
