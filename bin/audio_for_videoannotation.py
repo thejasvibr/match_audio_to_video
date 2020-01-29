@@ -15,6 +15,7 @@ import glob
 import os
 import warnings
 import numpy as np 
+from numba import jit
 #np.fft.restore_all() # after suggestion from https://github.com/IntelPython/mkl_fft/issues/11
 import pandas as pd
 import scipy.signal as signal
@@ -75,6 +76,12 @@ def match_video_sync_to_audio(video_sync,
                If not specified, then the sampling rate of the first file
                encountered with the given file formats found in the
                audio_folder is used. 
+
+    file_subset : tuple.
+                  Optional.   
+                  Allows user to provide a custom range of files 
+                  within which to look for the matching audio. 
+                  See get_file_series
 
     audio_fileformat : str.
                       The file format of the audio files to be searched.   
@@ -337,7 +344,6 @@ def upsample_signal(input_signal, resampling_factor,
     upsampled_signal = upsampled_2d.reshape(-1)
     return(upsampled_signal)
 
-
 def get_best_audio_match(upsampled_video_sync, audio_folder, 
                                  **kwargs):
     '''Does a brute force search across the sync channel 
@@ -381,7 +387,6 @@ def get_best_audio_match(upsampled_video_sync, audio_folder,
     
     return(best_audio_match)
                 
-
 def search_for_best_fit(upsampled_video_sync, audio_files_to_search,
                                                             **kwargs):
     '''
@@ -415,19 +420,33 @@ def search_for_best_fit(upsampled_video_sync, audio_files_to_search,
     all_max_of_cc = {}
     sync_channel  = kwargs.get('audiosync_channel', -1)
     folder_path = os.path.split(audio_files_to_search[0])[:-1][0]
+    
+    spikey = kwargs.get('audio_sync_spikey', True)
+    upsampled_video = adapt_signal_range_pm1(upsampled_video_sync)
+    print('max mins for upsampled video', np.min(upsampled_video), np.max(upsampled_video))
+
     for recording, next_recording in tqdm(zip(audio_files_to_search[:-1], 
                                          audio_files_to_search[1:])):
         filenames = map(get_filename, [recording, next_recording])
         file12_ID = '*'.join(filenames)
         audio= read_syncaudio(recording, sync_channel)
         next_audio= read_syncaudio(next_recording, sync_channel)
-        #pdb.set_trace()
-        cc = signal.correlate( np.concatenate((audio, next_audio)),
-                          upsampled_video_sync, 'same')
+
+        two_audio_recs = adapt_signal_range_pm1(np.concatenate((audio, next_audio)))
+        print('max mins', np.min(two_audio_recs), np.max(two_audio_recs))
+        if spikey:
+            onoff = make_onoff_from_spikey(two_audio_recs,
+                                                          **kwargs)
+            cc = signal.correlate(onoff,
+                              upsampled_video, 'same')
+
+        else:
+            cc = signal.correlate(two_audio_recs,
+                              upsampled_video, 'same')
+
         all_max_of_cc[file12_ID] = [np.max(cc), np.argmax(cc)]
-        #pdb.set_trace()
-        del audio, next_audio
-    
+
+        del audio, next_audio, two_audio_recs
     
     # do local search :
     all_cc_values = [each[0] for each in all_max_of_cc.values()]
@@ -792,7 +811,33 @@ def cross_correlate_chunks_contiguously(audio_chunks_to_cc, chunk_ids,
         doublechunk_ids.append(doublechunk_id)
     return(maxcross_correlations, doublechunk_ids, next_id, next_chunk)
 
+def adapt_signal_range_pm1(X):
+    '''Checks if the input signal X has a range 
+    between +1/-1, otherwise it sets the signal 
+    to that range by normalising it.
+    
+    Also, if a signal is only >0 or <0 , then 
+    it converts the signal to between +/- 1.
+    
+    Parameters
+    ----------
+    X : np.array. 
+    
+    Returns
+    --------
+    X, X_pm1
+    '''
+    X_is_pm1 = [np.min(X)>= -1, np.max(X)<=1]
+    all_X_above_or_below_0 = [np.all(X>=0), np.all(X<=0)]
+    #msg = 'Signal that is not within +/-1 detected - normalising now...'
+    if all_X_above_or_below_0:
+        return(set_between_pm1(X))
+    elif np.all(X_is_pm1):
+        return(X)
+    else:
+        return(set_between_pm1(X))
 
+@jit(nopython=True)
 def set_between_pm1(X):
     '''Sets the values in X between +1 and -1
     '''
@@ -800,6 +845,7 @@ def set_between_pm1(X):
     X_range = highest - lowest
     conversion = 2.0/X_range
     X_pm1 = (X-mean)*conversion
+    X_pm1 /= np.max(np.abs(X_pm1))
     return(X_pm1)
 
 def check_for_proper_indices(inds, X):

@@ -217,7 +217,7 @@ def get_timegap(annotation, **kwargs):
             annotation_length= 0.0001
         else:
             print(annotation['start_timestamp'],annotation['end_timestamp'] )
-            raise ValueError('annotation length cannot be <0 seconds')
+            raise ValueError('Start and end timestamp the same OR end timestamp is before start. \n Annotation length cannot be <0 seconds')
 
     return(annotation_length)
    
@@ -560,7 +560,7 @@ def calculate_relative_frame_position(framenumber, timestamp_of_interest,
     num_frames_in_that_second = np.sum(all_timestamps==timestamp_of_interest)
     
     if num_frames_in_that_second == 0:
-        raise NoMatchFound('Unable to find a matching timestamp for %s'%timestamp_of_interest)
+        raise NoMatchFound('Could not find a matching timestamp for %s , please check the annotation entry if it matches the exact format'%timestamp_of_interest)
     
     if framenumber > num_frames_in_that_second:
         raise InvalidFramenumber('Given frame number is more than the number of frames in that second! : %d' %framenumber)

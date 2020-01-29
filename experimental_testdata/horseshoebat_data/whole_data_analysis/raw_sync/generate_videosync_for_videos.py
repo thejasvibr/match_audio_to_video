@@ -10,6 +10,7 @@ import glob
 import sys 
 sys.path.append(module_folder)
 import matplotlib.pyplot as plt
+plt.rcParams['agg.path.chunksize'] = 10000
 import numpy as np
 import pandas as pd
 import scipy.signal as signal 
