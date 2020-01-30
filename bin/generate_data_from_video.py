@@ -120,7 +120,7 @@ def get_data_from_video(video_path, **kwargs):
     
     
     start_frame = kwargs.get('start_frame',0) 
-    end_frame = kwargs.get('end_frame', int(video.get(cv2.CAP_PROP_FRAME_COUNT)))    
+    end_frame = kwargs.get('end_frame', get_total_number_of_frames(video))    
     
     # check if led_border and timestamp border are given - else throw error message!
     check_if_borders_are_given(**kwargs)
@@ -154,6 +154,18 @@ def  check_if_borders_are_given(**kwargs):
     if kwargs.get('timestamp_border') is None:
         print('No timestamp border detected..are you sure you want to proceed?')
 
+def get_total_number_of_frames(vid_cap_object):
+    '''
+    '''
+
+    try:
+        num_frames = vid_cap_object.get(cv2.CAP_PROP_FRAME_COUNT)
+    except:
+        # see https://docs.opencv.org/master/d4/d15/group__videoio__flags__base.html#gaeb8dd9c89c10a5c63c139bf7c4f5704d
+        # this also gives the number of frames
+        num_frames = vid_cap_object.get(7)
+    return(int(num_frames))
+        
 
 
 def get_lamp_and_timestamp(each_img, **kwargs):
