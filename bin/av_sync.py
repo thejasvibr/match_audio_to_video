@@ -7,7 +7,8 @@ Created on Wed Jun 26 13:50:37 2019
 """
 import glob
 import warnings
-import multiprocessing
+#import multiprocessing
+from joblib import Parallel, delayed
 import time
 #import matplotlib.pyplot as plt
 #plt.rcParams['agg.path.chunksize'] = 10000
@@ -78,9 +79,8 @@ def get_audio_sync_signal(sync_channel, **kwargs):
     map_inputs = [(pos_sync,kwargs), (neg_sync,kwargs)]
 
     if doit_parallely:
-        pool = multiprocessing.Pool(2)
-        pos_peaks, neg_peaks = pool.map(get_peaks, 
-                                            map_inputs)
+        #pool = multiprocessing.Pool(2)
+        pos_peaks, neg_peaks = Parallel(n_jobs=2)(delayed(get_peaks)(each) for each in map_inputs)
     else:
         pos_peaks, neg_peaks = map(get_peaks, 
                                             map_inputs)
