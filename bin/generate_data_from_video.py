@@ -198,14 +198,27 @@ def get_lamp_and_timestamp(each_img, **kwargs):
     bw_threshold : 1 > float >0
                   Sets the threshold for binarisation after a color image is turned to 
                   grayscale. Defaults to 0.65.
+
+    read_timestamp_and_lamp : tuple. 
+        Tuple with Booleans to indicate whether both timestamp and lamp need to be read. 
+        Defaults to (True, True)
+
     '''
+    read_timestamp, read_lamp = kwargs.get('read_timestamp_and_lamp', 
+                                                 (True, True))
     try:
         im = Image.fromarray(each_img)
-        text = read_timestamp(im, **kwargs)
-        
-        measure_led_intensity = kwargs.get('measure_led', np.sum)
-        cropped_led_ROI = ImageOps.crop(im,kwargs['led_border'])
-        led_intensity = measure_led_intensity(cropped_led_ROI)
+        if read_timestamp:
+            text = read_timestamp(im, **kwargs)
+        else:
+            text = np.nan
+        if read_lamp:
+            measure_led_intensity = kwargs.get('measure_led', np.sum)
+            cropped_led_ROI = ImageOps.crop(im,kwargs['led_border'])
+            led_intensity = measure_led_intensity(cropped_led_ROI)
+        else:
+            led_intensity = np.nan
+
         return(text, led_intensity)
 
     except:
