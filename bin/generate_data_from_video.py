@@ -204,15 +204,15 @@ def get_lamp_and_timestamp(each_img, **kwargs):
         Defaults to (True, True)
 
     '''
-    read_timestamp, read_lamp = kwargs.get('read_timestamp_and_lamp', 
+    timestamp_to_be_read, lamp_to_be_read = kwargs.get('read_timestamp_and_lamp', 
                                                  (True, True))
     try:
         im = Image.fromarray(each_img)
-        if read_timestamp:
+        if timestamp_to_be_read:
             text = read_timestamp(im, **kwargs)
         else:
             text = np.nan
-        if read_lamp:
+        if lamp_to_be_read:
             measure_led_intensity = kwargs.get('measure_led', np.sum)
             cropped_led_ROI = ImageOps.crop(im,kwargs['led_border'])
             led_intensity = measure_led_intensity(cropped_led_ROI)
@@ -222,7 +222,7 @@ def get_lamp_and_timestamp(each_img, **kwargs):
         return(text, led_intensity)
 
     except:
-         print('Failed reading' + 'file:')
+         print('Failed reading' + 'file:', text, led_intensity)
          return(np.nan, np.nan)
 
 def read_timestamp(full_image, **kwargs):
