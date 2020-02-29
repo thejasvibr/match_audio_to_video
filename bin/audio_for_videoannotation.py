@@ -15,7 +15,6 @@ import glob
 import os
 import warnings
 import numpy as np 
-from numba import jit
 #np.fft.restore_all() # after suggestion from https://github.com/IntelPython/mkl_fft/issues/11
 import pandas as pd
 import scipy.signal as signal
@@ -837,7 +836,7 @@ def adapt_signal_range_pm1(X):
     else:
         return(set_between_pm1(X))
 
-@jit(nopython=True)
+
 def set_between_pm1(X):
     '''Sets the values in X between +1 and -1
     '''

@@ -22935,6 +22935,342 @@ Start and end indices around peak:                  start index: 11538474		     
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Taking-stock-of-the-AV-sync-cross-correlation-coefficients:">Taking stock of the AV sync cross-correlation coefficients:<a class="anchor-link" href="#Taking-stock-of-the-AV-sync-cross-correlation-coefficients:">&#182;</a></h3><p>Most of the matches are $\geq0.8$ , but there are some that are start between 02:01:21 to 02:01:23. These annotations have a lower cross-corr coefficient than other (~0.7), and are characterised by a good match in the sync_audio, except for hte last few (6-8 seconds) seconds. I'm guessing this might be because of a weird framerate anomaly that's showing up in the common_fps files.</p>
+<p>The ~0.7 cc coefficient matched annotations are <code>2018-08-19_23_3, 2018-08-19_23_4, 2018-08-19_23_5, 2018-08-19_23_6</code>. The</p>
+<h3 id="Deleting-one-bad-match:-2018-08-19_23_44">Deleting one bad match: 2018-08-19_23_44<a class="anchor-link" href="#Deleting-one-bad-match:-2018-08-19_23_44">&#182;</a></h3><p>The sync and annotation audio for Annotation id 44 will be deleted because there was actually <em>no</em> video signal to actually match. This annotation fell in the period in the video_sync file that was zero-filled.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">start_frame</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">video_sync</span><span class="p">[</span><span class="s1">&#39;timestamp_verified&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;2018-08-19 02:01:21&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">end_frame</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">video_sync</span><span class="p">[</span><span class="s1">&#39;timestamp_verified&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;2018-08-19 02:02:08&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">start_frame</span><span class="p">,</span> <span class="n">end_frame</span>
+<span class="n">relevant_rows</span> <span class="o">=</span> <span class="n">video_sync</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">start_frame</span><span class="p">:</span><span class="n">end_frame</span><span class="o">+</span><span class="mi">1</span><span class="p">,:]</span>
+<span class="n">timestamps</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">relevant_rows</span><span class="p">[</span><span class="s1">&#39;timestamp_verified&#39;</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;timestamp&#39;</span><span class="p">:</span><span class="n">timestamps</span><span class="p">,</span> <span class="s1">&#39;num_frames&#39;</span><span class="p">:</span><span class="n">counts</span><span class="p">})</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[37]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>num_frames</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:21</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>23</td>
+      <td>2018-08-19 02:01:22</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>21</td>
+      <td>2018-08-19 02:01:23</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:24</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>23</td>
+      <td>2018-08-19 02:01:25</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>21</td>
+      <td>2018-08-19 02:01:26</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:27</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>23</td>
+      <td>2018-08-19 02:01:28</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>21</td>
+      <td>2018-08-19 02:01:29</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:30</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:31</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:32</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:33</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:34</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:35</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:36</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:37</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:38</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:39</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:40</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:41</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:42</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:43</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:44</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:45</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:46</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:47</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:48</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:49</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:50</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:51</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:52</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:53</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:54</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:55</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:56</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>22</td>
+      <td>2018-08-19 02:01:57</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>23</td>
+      <td>2018-08-19 02:01:58</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>21</td>
+      <td>2018-08-19 02:01:59</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>44</td>
+      <td>2018-08-19 02:02:00</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>22</td>
+      <td>2018-08-19 02:02:01</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>22</td>
+      <td>2018-08-19 02:02:02</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>22</td>
+      <td>2018-08-19 02:02:03</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>22</td>
+      <td>2018-08-19 02:02:04</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>23</td>
+      <td>2018-08-19 02:02:05</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>21</td>
+      <td>2018-08-19 02:02:06</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>22</td>
+      <td>2018-08-19 02:02:07</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>22</td>
+      <td>2018-08-19 02:02:08</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-problem-timestamp-:">The problem timestamp :<a class="anchor-link" href="#The-problem-timestamp-:">&#182;</a></h3><p><code>2018-08-19 02:02:00</code> appears 44 times - and thus messes up with the cross correlation coefficients! But otherwise, the matches are correct!</p>
+
+</div>
+</div>
+</div>
     </div>
   </div>
 </body>
