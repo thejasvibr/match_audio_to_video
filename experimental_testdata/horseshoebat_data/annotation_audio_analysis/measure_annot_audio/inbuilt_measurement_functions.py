@@ -91,7 +91,7 @@ def lower_minusXdB_peakfrequency(audio, **kwargs):
 def dominant_frequencies(audio, **kwargs):
     '''
     Identify multiple dominant frequencies in the audio. This works by considering
-    all frequencies within -20 dB of the peak frequency. 
+    all frequencies within -X dB of the peak frequency. 
     
     The 'dominant frequency' is identified as the central point of a region which 
     is continuously above the threshold. 
@@ -99,6 +99,7 @@ def dominant_frequencies(audio, **kwargs):
     The power spectrum is normally quite spikey, making it hard to discern individual 
     peaks with a fixed threshold. To overcome this, the entire spectrum is 
     mean averaged using a running mean filter that is 3 frequency bands long.
+
     
     Parameters
     ----------
@@ -127,6 +128,11 @@ def dominant_frequencies(audio, **kwargs):
     The spectrum_smoothing_width is calculated so. If the spectrum frequency resolution is
      3 Hz, and the given spectrum_smoothing_width is set to 300 Hz, then the number
      of center frequencies used for the smoothing is 100. 
+     
+     The peak_range parameter is important in determining how wide the peak detection
+     range is. If the peak_range parameter is very large, then there is a greater chance
+     of picking up irrelevant peaks. 
+     
     '''
     fs = kwargs['fs']
     inter_peak_difference = kwargs['inter_peak_difference']
@@ -154,6 +160,8 @@ def peak_frequency(audio, **kwargs):
     return peak_freq
 
 if __name__=='__main__':
+    # randomly sample 50ms audio segments from a randomly chosen file in a folder each time.
+    import glob
     import os
     import soundfile as sf
     import matplotlib.pyplot as plt
@@ -161,21 +169,24 @@ if __name__=='__main__':
 
     main_audio_path = '../../individual_call_analysis/annotation_audio'
     rec_hour = '2018-08-16_2300-2400_annotation_audio'
-    rec_file = 'matching_annotaudio_Aditya_2018-08-16_2324_211.WAV'
+    all_files = glob.glob(os.path.join(main_audio_path,rec_hour,'*.WAV'))
+    rec_file = np.random.choice(all_files,1)[0]
     
-    audio_path = os.path.join(main_audio_path, rec_hour, rec_file)
+    #audio_path = os.path.join(main_audio_path, rec_hour, rec_file)
     
     #multi_bat_path = os.path.join('/home/tbeleyur/Desktop','multi_batwav.wav')
-    raw_audio, fs = sf.read(audio_path)
+    raw_audio, fs = sf.read(rec_file)
     b,a = signal.butter(4, 80000/fs*0.5, 'highpass')
-    audio = signal.filtfilt(b,a, raw_audio[:,0])
+    start_time = np.random.choice(np.arange(0,sf.info(rec_file).duration, 0.001)-0.05, 1)
+    stop_time = start_time + 0.05
+    start, stop = int(fs*start_time), int(fs*stop_time)
+    audio = signal.filtfilt(b,a, raw_audio[start:stop,0])
     
-    kwargs = {'inter_peak_difference':200, 
+    kwargs = {'inter_peak_difference':250, 
               'spectrum_smoothing_width': 100,
-              'peak_range': 20,
+              'peak_range': 14,
               'fs':fs,
-              'db_range':40}
-    
+              'db_range':46}
     
     dom_freqs = dominant_frequencies(audio, **kwargs)
 
@@ -195,8 +206,8 @@ if __name__=='__main__':
     
     plt.figure()
     plt.specgram(audio, Fs=fs)
-    plt.hlines(dom_freqs['dominant_frequencies'], 0,1.4)
-    plt.hlines(lower['minus_XdB_frequency'], 0,1.4,'r')
+    plt.hlines(dom_freqs['dominant_frequencies'], 0,audio.size/fs)
+    plt.hlines(lower['minus_XdB_frequency'], 0,audio.size/fs,'r')
     
 
 
