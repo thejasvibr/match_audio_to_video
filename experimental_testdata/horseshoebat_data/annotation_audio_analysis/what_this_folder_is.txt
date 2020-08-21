@@ -1,0 +1,8 @@
+This folder will house all the analyses done to 
+1) quantify full annotation audio clips in terms of their acoustical parameters
+2) compare how different the acoustic parameters are between single bat and multi 
+bat audio clips
+3) maybe perhaps also some analyses on trying to estimate the call rate in audio 
+clips using the FM legs of calls
+
+- last updated 2020-07-11

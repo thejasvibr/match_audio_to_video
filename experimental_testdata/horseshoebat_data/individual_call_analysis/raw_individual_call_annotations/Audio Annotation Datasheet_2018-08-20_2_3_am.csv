@@ -1,0 +1,54 @@
+audio_annotation_file,start_random_point,search_start_time(s),Direction,No._of_ms_whole_screen,call_start_time,call_end_time,SNR(dB RMS),Silent_period_Start,Silent_period_end,Comments
+matching_annotaudio_Aditya_2018-08-20_0200-0300_2,0.17,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at 80kHz
+matching_annotaudio_Aditya_2018-08-20_0200-0300_3,0.14,NA,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0200-0300_5,0.16,NA,R,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0200-0300_6,0.69,NA,R,NA,NA,NA,NA,NA,NA,Only one bat in the cave. However overlapping calls. There is another bat event after a few frames.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_7,0.61,NA,L,NA,NA,NA,NA,NA,NA,Only one bat in the cave. However overlapping calls. 
+matching_annotaudio_Aditya_2018-08-20_0200-0300_8,0.1,0.06,L,NA,NA,NA,NA,NA,NA,No clear call in channel 1]
+matching_annotaudio_Aditya_2018-08-20_0200-0300_11,0.12,0.0528,L,60,0.263,0.281,21.92,0.297,0.304,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_13,0.96,NA,R,NA,NA,NA,NA,NA,NA,No calls with good SNR in channel 1
+matching_annotaudio_Aditya_2018-08-20_0200-0300_16,0.73,0.6424,L,55,0.007,0.032,30.57,0.091,0.096,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_17,0.34,0.1088,R,NA,NA,NA,NA,NA,NA,There is only 1 bat in the cave. However overlapping HSB calls since succeeding this is a multi bat situation.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_18,0.61,0.6344,R,65,0.589,0.604,23.12,0.678,0.681,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_23,0.86,0.516,R,70,0.21,0.237,24.22,0.197,0.204,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_24,0.24,NA,R,NA,NA,NA,NA,NA,NA,Overlapping  HSB calls of 100 kHz and 80kHz in the beginning.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_26,0.29,NA,R,NA,NA,NA,NA,NA,NA,Overlapping  HSB calls of 100 kHz and 80kHz in the beginning.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_28,0.24,NA,R,NA,NA,NA,NA,NA,NA,Overlapping  HSB calls of 100 kHz and 80kHz .Succeeding this is a 2 bat situation
+matching_annotaudio_Aditya_2018-08-20_0200-0300_30,0.63,NA,R,NA,NA,NA,NA,NA,NA,3 bat situation with Overlapping  HSB calls of 100 kHz and 80kHz
+matching_annotaudio_Aditya_2018-08-20_0200-0300_32,0.02,NA,R,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0200-0300_37,0.93,NA,R,NA,NA,NA,NA,NA,NA,There is only 1 bat in the cave. However overlapping HSB calls since succeeding this is a multi bat situation.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_38,0.02,0.0216,R,65,0.388,0.408,29.58,0.362,0.37,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_39,0.19,0.0988,L,65,0.079,0.105,28.24,0.117,0.126,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_40,0.12,NA,L,NA,NA,NA,NA,NA,NA,THere is only 1 bat in the cave. However overlapping HSB calls
+matching_annotaudio_Aditya_2018-08-20_0200-0300_41,0.98,1.0192,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0200-0300_42,0.58,NA,R,NA,NA,NA,NA,NA,NA,There is only 1 bat in the cave. However overlapping HSB calls since succeeding this is a multi bat situation.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_43,0.99,1.8612,L,60,0.796,0.816,21.29,0.908,0.914,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_44,0.54,0.108,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0200-0300_48,0.45,NA,R,NA,NA,NA,NA,NA,NA,There is only 1 bat in the cave. However overlapping HSB calls since succeeding this is a multi bat situation.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_50,0.97,1.4356,L,NA,NA,NA,NA,NA,NA,Fm+HSB @ 100 kHz. There is only one bat in the cave though
+matching_annotaudio_Aditya_2018-08-20_0200-0300_52,0.75,NA,L,NA,NA,NA,NA,NA,NA,Fm+HSB @ 100 kHz. There is only one bat in the cave though
+matching_annotaudio_Aditya_2018-08-20_0200-0300_53,0.8,NA,R,NA,NA,NA,NA,NA,NA,Fm+HSB @ 100 kHz. There is only one bat in the cave though
+matching_annotaudio_Aditya_2018-08-20_0200-0300_54,0.44,0.9504,R,65,0.368,0.408,26.76,0.417,0.425,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_55,0.85,0.1887,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0200-0300_56,0.48,NA,R,NA,NA,NA,NA,NA,NA,Fm+HSB @ 100 kHz. There is only one bat in the cave though
+matching_annotaudio_Aditya_2018-08-20_0200-0300_57,0.77,NA,L,NA,NA,NA,NA,NA,NA,Fm+HSB @ 100 kHz. There is only one bat in the cave though
+matching_annotaudio_Aditya_2018-08-20_0200-0300_60,0.9,2.232,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0200-0300_61,0.12,0.0864,L,45,0.082,0.11,26.65,0.068,0.075,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_62,0.21,0.126,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0200-0300_64,0.54,0.8856,L,55,0.696,0.716,21.39,0.687,0.694,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_66,0.65,1.742,R,80,2.612,2.641,32.18,2.199,2.21,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_67,0.89,0.3204,L,NA,NA,NA,NA,NA,NA,No calls with good SNR
+matching_annotaudio_Aditya_2018-08-20_0200-0300_68,0.73,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However overlapping HSb calls since succeeding this is a 2 bat situation
+matching_annotaudio_Aditya_2018-08-20_0200-0300_69,0.32,NA,L,NA,NA,NA,NA,NA,NA,Overlapping HSB calls. However prominent FM calls also.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_71,0.32,0.2816,R,55,0.035,0.059,24.25,0.259,0.272,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_72,0.49,0.4508,L,60,0.468,0.502,26.71,0.641,0.653,Not sure if there is a little interference.
+matching_annotaudio_Aditya_2018-08-20_0200-0300_73,0.23,0.4048,R,55,0.028,0.048,21.07,0.081,0.093,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_76,0.46,1.0488,R,70,0.354,0.379,23.02,0.387,0.395,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_78,0.51,0.612,L,75,0.247,0.273,25.11,0.019,0.025,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_79,0.56,0.224,R,50,0.227,0.248,20.34,0.196,0.202,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_80,0.6,0.864,L,45,0.13,0.156,28.71,0.222,0.225,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_88,0.7,0.448,L,40,0.012,0.038,27.76,0.006,0.01,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_90,0.02,0.0184,L,60,0.029,0.05,20.09,0.022,0.027,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_91,0.55,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However overlapping HSb calls since succeeding this is a 2 bat situation
+matching_annotaudio_Aditya_2018-08-20_0200-0300_92,0.53,3.6464,R,55,1.974,1.988,27.66,1.992,1.995,
+matching_annotaudio_Aditya_2018-08-20_0200-0300_95,0.21,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at 80kHz

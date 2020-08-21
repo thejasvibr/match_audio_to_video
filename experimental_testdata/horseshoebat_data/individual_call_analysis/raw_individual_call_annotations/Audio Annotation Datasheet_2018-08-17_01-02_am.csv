@@ -1,0 +1,86 @@
+audio_annotation_file,start_random_point,search_start_time(s),Direction,No._of_ms_whole_screen,call_start_time,call_end_time,SNR(dB RMS),Silent_period_Start,Silent_period_end,Comments
+matching_annotaudio_Aditya_2018-08-17_12_2,0.25,0.51,R,65,0.307,0.337,33.93,0.35,0.361,
+matching_annotaudio_Aditya_2018-08-17_12_3,0.06,NA,L,NA,NA,NA,NA,NA,NA,"There is only one bat flying in the cave. However,there are myotis calls in between. Hence not annotated."
+matching_annotaudio_Aditya_2018-08-17_12_4,0.59,3.5164,R,45,0.254,0.272,25.61,0.248,0.252,
+matching_annotaudio_Aditya_2018-08-17_12_6,0.44,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_12_7,0.95,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_8,0.45,0.252,L,70,0.161,0.177,27.79,0.105,0.125,
+matching_annotaudio_Aditya_2018-08-17_12_9,0.86,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_12_12,0.42,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_12_13,0.42,0.3024,L,NA,NA,NA,NA,NA,NA,"HSB calls. Even after HP filter, there are remaining portions of FM calls in 'pink'. Hence not annotated."
+matching_annotaudio_Aditya_2018-08-17_12_14,0.52,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_12_15,0.41,2.0828,L,70,0.251,0.272,25.44,0.235,0.246,There are very faint myotis calls also. Not very sure.
+matching_annotaudio_Aditya_2018-08-17_12_16,0.04,0.0352,L,55,0.1,0.124,28.2,0.089,0.095,
+matching_annotaudio_Aditya_2018-08-17_12_21,0.68,1.36,R,55,0.719,0.769,42.66,0.7,0.713,
+matching_annotaudio_Aditya_2018-08-17_12_23,0.05,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-17_12_24,0.44,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-17_12_25,0.4,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-17_12_27,0.67,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-17_12_28,0.81,1.1016,R,50,0.152,0.17,24.38,0.094,0.107,
+matching_annotaudio_Aditya_2018-08-17_12_29,0.04,0.0544,R,45,0.108,0.147,23.43,0.08,0.099,
+matching_annotaudio_Aditya_2018-08-17_12_32,0.38,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-17_12_33,0.78,0.8736,L,70,0.713,0.731,25.95,0.703,0.711,
+matching_annotaudio_Aditya_2018-08-17_12_37,0.04,NA,L,NA,NA,NA,NA,NA,NA,There are prominent myotis calls through out. Prominent HSB calls towards the end - another bat enters the cave in a few frames
+matching_annotaudio_Aditya_2018-08-17_12_38,0.43,NA,R,NA,NA,NA,NA,NA,NA,Only one bat flying in the cave. However both HSB and myotis calls present- could be that of the bats flying in the corridor.
+matching_annotaudio_Aditya_2018-08-17_12_39,0.5,1,L,60,0.142,0.193,28.05,0.122,0.141,Only HSB calls
+matching_annotaudio_Aditya_2018-08-17_12_41,0.97,NA,L,NA,NA,NA,NA,NA,NA,Only FM calls
+matching_annotaudio_Aditya_2018-08-17_12_42,0.25,NA,L,NA,NA,NA,NA,NA,NA,Both HSB and myotis calls. Succeeding this is a 2 bat situation.
+matching_annotaudio_Aditya_2018-08-17_12_43,0.84,NA,L,NA,NA,NA,NA,NA,NA,2 bat situation between a myotis and HSB .
+matching_annotaudio_Aditya_2018-08-17_12_44,0.56,0.336,L,50,0.138,0.165,26.63,0.125,0.134,
+matching_annotaudio_Aditya_2018-08-17_12_50,0.3,0.78,L,75,0.203,0.227,24.99,0.262,0.288,
+matching_annotaudio_Aditya_2018-08-17_12_52,0.32,0.1408,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_12_53,0.48,0.2688,R,70,0.159,0.185,38.85,0.144,0.15,
+matching_annotaudio_Aditya_2018-08-17_12_56,0.1,NA,L,NA,NA,NA,NA,NA,NA,"FM calls only. There are two bats. But the calls of one bat are off axis,"
+matching_annotaudio_Aditya_2018-08-17_12_57,0.16,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_58,0.31,NA,R,NA,NA,NA,NA,NA,NA,Only FM calls
+matching_annotaudio_Aditya_2018-08-17_12_61,0.27,NA,L,NA,NA,NA,NA,NA,NA,No clear call.
+matching_annotaudio_Aditya_2018-08-17_12_62,0.13,NA,L,NA,NA,NA,NA,NA,NA,"In addition to HSB calls,There are myotis calls in between. "
+matching_annotaudio_Aditya_2018-08-17_12_63,0.38,NA,L,NA,NA,NA,NA,NA,NA,"In addition to HSB calls,There are myotis calls in between. "
+matching_annotaudio_Aditya_2018-08-17_12_64,0.93,NA,L,NA,NA,NA,NA,NA,NA,There are two faint myotis call even after filtering.
+matching_annotaudio_Aditya_2018-08-17_12_65,0.68,NA,R,NA,NA,NA,NA,NA,NA,Only FM calls
+matching_annotaudio_Aditya_2018-08-17_12_67,0.49,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_68,0.98,1.2544,R,70,1.179,1.201,21.72,1.15,1.162,
+matching_annotaudio_Aditya_2018-08-17_12_69,0.15,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_70,0.35,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_71,0.15,1.848,L,50,1.822,1.844,23.72,1.857,1.872,
+matching_annotaudio_Aditya_2018-08-17_12_72,0.28,NA,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_12_73,0.53,2.544,L,80,1.13,1.151,20.96,1.113,1.124,
+matching_annotaudio_Aditya_2018-08-17_12_74,0.34,0.5304,R,50,0.2,0.221,29.01,0.232,0.244,
+matching_annotaudio_Aditya_2018-08-17_12_75,0.7,1.176,L,55,0.494,0.51,22.61,0.522,0.527,
+matching_annotaudio_Aditya_2018-08-17_12_76,0.12,0.048,R,50,0.027,0.051,29.52,0.014,0.023,There seem to be one point where interference happens. Silent period taken from 12_61
+matching_annotaudio_Aditya_2018-08-17_12_77,0.95,0.836,R,50,0.45,0.471,34.15,0.638,0.641,
+matching_annotaudio_Aditya_2018-08-17_12_78,0.44,NA,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_12_79,0.08,0.128,R,50,0.083,0.112,35.82,0.059,0.071,
+matching_annotaudio_Aditya_2018-08-17_12_80,0.31,0.6448,R,65,0.081,0.109,30.12,0.069,0.076,
+matching_annotaudio_Aditya_2018-08-17_12_81,0.01,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_83,0.11,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq 80kHz + myotis calls.
+matching_annotaudio_Aditya_2018-08-17_12_85,0.6,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation -  one of them is a HSB with calls at peak freq. 80kHz.
+matching_annotaudio_Aditya_2018-08-17_12_88,0.59,0.3304,R,70,0.427,0.446,30.05,0.451,0.455,
+matching_annotaudio_Aditya_2018-08-17_12_90,0.44,NA,R,NA,NA,NA,NA,NA,NA,"There is one bat going in and out of the roost multiple times. I have considered this as the same bat. Could be different bats. Change the annotation? - HSB calls at peak freq. 100 kHz, 80 kHz, myotis calls."
+matching_annotaudio_Aditya_2018-08-17_12_91,0.59,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_92,0.52,NA,R,NA,NA,NA,NA,NA,NA,Only FM calls
+matching_annotaudio_Aditya_2018-08-17_12_94,0.35,NA,L,NA,NA,NA,NA,NA,NA,"There is only one bat flying in the cave. However,overlapping HSB calls -succeeding this is a  2 bat situation."
+matching_annotaudio_Aditya_2018-08-17_12_97,0.4,NA,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_12_98,0.58,NA,R,NA,NA,NA,NA,NA,NA,2-3 myotis calls in between.
+matching_annotaudio_Aditya_2018-08-17_12_99,0.84,NA,L,NA,NA,NA,NA,NA,NA,Only FM calls
+matching_annotaudio_Aditya_2018-08-17_12_100,0.91,0.8008,R,50,0.38,0.401,22.67,0.368,0.375,
+matching_annotaudio_Aditya_2018-08-17_12_101,0.83,0.4648,R,70,0.034,0.054,25.47,0.023,0.033,
+matching_annotaudio_Aditya_2018-08-17_12_103,0.6,0.504,R,70,0.421,0.44,22.7,0.409,0.417,
+matching_annotaudio_Aditya_2018-08-17_12_104,0.47,4.0232,L,65,3.539,3.575,29.17,3.588,3.599,
+matching_annotaudio_Aditya_2018-08-17_12_105,0.56,0.4256,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_12_106,0.22,0.1056,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_12_108,0.44,0.1408,R,40,0.221,0.24,22.55,0.298,0.303,
+matching_annotaudio_Aditya_2018-08-17_12_110,0.47,2.2372,R,70,2.346,2.392,33.88,2.329,2.342,
+matching_annotaudio_Aditya_2018-08-17_12_112,0.67,NA,R,NA,NA,NA,NA,NA,NA,HSB calls of peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_113,0.71,NA,R,NA,NA,NA,NA,NA,NA,HSB calls of peak freq 80kHz
+matching_annotaudio_Aditya_2018-08-17_12_114,0.77,1.848,R,40,1.541,1.564,25.25,1.534,1.539,
+matching_annotaudio_Aditya_2018-08-17_12_115,0.58,2.668,R,70,3.833,3.888,36.94,3.823,3.83,
+matching_annotaudio_Aditya_2018-08-17_12_116,0.77,6.5912,R,70,7.608,7.648,34.28,7.595,7.604,
+matching_annotaudio_Aditya_2018-08-17_12_117,0.13,0.6084,L,70,2.629,2.652,28.4,2.662,2.671,
+matching_annotaudio_Aditya_2018-08-17_12_118,0.08,0.272,L,50,2.92,2.939,28.02,2.954,2.969,
+matching_annotaudio_Aditya_2018-08-17_12_121,0.84,4.5696,L,80,4.139,4.205,35.41,4.215,4.231,
+matching_annotaudio_Aditya_2018-08-17_12_122,0.18,0.9648,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_12_123,0.03,NA,R,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However overlapping calls from the next bat.
+matching_annotaudio_Aditya_2018-08-17_12_124,0.45,0.162,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_12_125,0.29,NA,L,NA,NA,NA,NA,NA,NA,There is another single bat situation which follows immediately after this. Hence overlap of calls towards the end. 
+matching_annotaudio_Aditya_2018-08-17_12_126,0.39,2.4648,L,NA,NA,NA,NA,NA,NA,Incorrect video annotation. I haven't left 6 frames between the bat situations. Hence slight overlap initially. There are clear calls towards the end.

@@ -1,0 +1,70 @@
+audio_annotation_file,start_random_point,search_start_time(s),Direction,No._of_ms_whole_screen,call_start_time,call_end_time,SNR(dB RMS),Silent_period_Start,Silent_period_end,Comments
+matching_annotaudio_Aditya_2018-08-17_01_2,0.58,0.1392,L,60,0.35,0.55,25.79,0.061,0.065,The amplitude reduces towards the end of the CF and the terminal FM. Not sure if it occurs because of some interference
+matching_annotaudio_Aditya_2018-08-17_01_3,0.5,0.24,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_4,0.79,1.2324,R,50,1.257,1.276,23.12,1.246,1.253,
+matching_annotaudio_Aditya_2018-08-17_01_6,0.55,0.33,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_7,0.09,0.0252,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_8,0.43,0.3784,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_10,0.98,1.0976,R,70,0.939,0.958,27.34,0.922,0.938,
+matching_annotaudio_Aditya_2018-08-17_01_11,0.34,0.3944,R,70,0.038,0.059,32.06,0.072,0.079,
+matching_annotaudio_Aditya_2018-08-17_01_13,0.9,0.468,L,70,0.133,0.151,31.05,0.124,0.132,
+matching_annotaudio_Aditya_2018-08-17_01_14,0.42,0.1848,L,NA,NA,NA,NA,NA,NA,Duplicate annotation
+matching_annotaudio_Aditya_2018-08-17_01_15,0.89,0.8188,L,55,0.371,0.39,29.37,0.361,0.368,
+matching_annotaudio_Aditya_2018-08-17_01_16,0.67,0.6164,R,NA,NA,NA,NA,NA,NA,Duplicate annotation
+matching_annotaudio_Aditya_2018-08-17_01_17,0.82,0.14678,R,NA,NA,NA,NA,NA,NA,The calls of the next bat also present. Not annotated
+matching_annotaudio_Aditya_2018-08-17_01_18,0.44,NA,R,NA,NA,NA,NA,NA,NA,Duplicate annotation
+matching_annotaudio_Aditya_2018-08-17_01_19,0.61,0.2928,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_20,0.91,NA,L,NA,NA,NA,NA,NA,NA,Duplicate annotation
+matching_annotaudio_Aditya_2018-08-17_01_21,0.71,0.8236,R,70,0.087,0.111,31.56,0.065,0.068,
+matching_annotaudio_Aditya_2018-08-17_01_22,0.37,0.888,L,70,0.173,0.19,31.3,0.222,0.232,
+matching_annotaudio_Aditya_2018-08-17_01_23,0.98,0.392,L,NA,NA,NA,NA,NA,NA,There is only one bat flying. However succeding this is a 2 bat situation. Hence overlapping HSB calls.
+matching_annotaudio_Aditya_2018-08-17_01_24,0.85,0.544,L,80,0.393,0.45,22.91,0.189,0.195,
+matching_annotaudio_Aditya_2018-08-17_01_26,0.93,0.5952,R,50,0.033,0.048,21.65,0.147,0.157,
+matching_annotaudio_Aditya_2018-08-17_01_27,0.62,0.2728,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However overlapping HSB calls.
+matching_annotaudio_Aditya_2018-08-17_01_28,0.55,0.55,R,60,0.216,0.23,22.34,0.135,0.156,Not a very clear call.There are echoes after the call.Silent interval taken from 01_26
+matching_annotaudio_Aditya_2018-08-17_01_29,0.62,0.248,L,50,0.166,0.201,24.56,0.281,0.283,There are faint echoes throught out the call. Not a very clear call
+matching_annotaudio_Aditya_2018-08-17_01_30,0.27,0.0648,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_31,0.36,NA,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_32,0.11,0.0616,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_33,0.41,0.3936,R,55,0.391,0.41,27.65,0.384,0.39,
+matching_annotaudio_Aditya_2018-08-17_01_34,0.41,0.082,L,50,0.089,0.11,26.69,0.136,0.142,There are echoe after the call
+matching_annotaudio_Aditya_2018-08-17_01_35,0.45,0.18,L,50,0.235,0.252,21.8,0.217,0.227,
+matching_annotaudio_Aditya_2018-08-17_01_36,0.4,0.784,R,60,1.212,1.231,24.88,1.194,1.209,
+matching_annotaudio_Aditya_2018-08-17_01_37,0.91,0.5824,L,40,0.005,0.022,29.46,0.001,0.005,
+matching_annotaudio_Aditya_2018-08-17_01_38,0.06,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However overlapping HSB calls. Succeeding this is a 2 bat situation.
+matching_annotaudio_Aditya_2018-08-17_01_39,0.84,0.336,R,50,0.04,0.059,36.8,0.242,0.249,There are faint echoes throught out the call.
+matching_annotaudio_Aditya_2018-08-17_01_40,0.97,0.6596,L,50,0.183,0.202,23.42,0.176,0.179,
+matching_annotaudio_Aditya_2018-08-17_01_42,0.27,NA,R,NA,NA,NA,NA,NA,NA,There is only one bat present in the cave. However there are FM calls as well as overlapping HSB calls.  A multi bat situation succeeds this.
+matching_annotaudio_Aditya_2018-08-17_01_43,0.05,0.038,L,50,0.723,0.729,33.9,0.127,0.133,
+matching_annotaudio_Aditya_2018-08-17_01_44,0.86,1.3072,L,50,0.365,0.385,24.17,0.214,0.223,
+matching_annotaudio_Aditya_2018-08-17_01_45,0.71,1.1928,R,50,1.111,1.151,37.57,0.886,0.891,
+matching_annotaudio_Aditya_2018-08-17_01_46,0.39,0.234,L,70,0.506,0.534,31.7,0.494,0.502,
+matching_annotaudio_Aditya_2018-08-17_01_47,0.78,1.0608,L,45,0.903,0.92,40.5,0.995,0.999,
+matching_annotaudio_Aditya_2018-08-17_01_49,0.64,0.4608,L,45,0.068,0.085,20,0.028,0.04,
+matching_annotaudio_Aditya_2018-08-17_01_51,0.42,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80kHz
+matching_annotaudio_Aditya_2018-08-17_01_52,0.38,0.3192,R,NA,NA,NA,NA,NA,NA,No clear call. Also HSB calls at peak freq. of 80 kHz towards the end.
+matching_annotaudio_Aditya_2018-08-17_01_53,0.1,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80kHz
+matching_annotaudio_Aditya_2018-08-17_01_54,0.38,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80kHz
+matching_annotaudio_Aditya_2018-08-17_01_57,0.17,0.0884,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_58,0.49,0.9996,R,60,1.095,1.14,32.82,1.151,1.165,
+matching_annotaudio_Aditya_2018-08-17_01_60,0.37,0.222,R,70,0.028,0.049,29.31,0.094,0.101,Not exactly sure where the call starts.
+matching_annotaudio_Aditya_2018-08-17_01_61,0.8,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80kHz
+matching_annotaudio_Aditya_2018-08-17_01_62,0.43,0.1032,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_63,0.53,0.2968,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_65,0.54,0.7992,L,45,0.286,0.305,20.02,0.238,0.246,
+matching_annotaudio_Aditya_2018-08-17_01_66,0.17,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80kHz
+matching_annotaudio_Aditya_2018-08-17_01_69,0.57,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80kHz
+matching_annotaudio_Aditya_2018-08-17_01_70,0.38,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation -  one HSB with calls at peak freq. 80kHz
+matching_annotaudio_Aditya_2018-08-17_01_72,0.87,NA,R,NA,NA,NA,NA,NA,NA,There is only one bat in the cave.However faint HSB calls of 80 kHz freq.also present.
+matching_annotaudio_Aditya_2018-08-17_01_73,0.34,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80kHz
+matching_annotaudio_Aditya_2018-08-17_01_74,0.98,0.3528,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_75,0.94,0.7144,R,50,0.204,0.22,31.43,0.538,0.544,Not exactly sure where the call starts.
+matching_annotaudio_Aditya_2018-08-17_01_76,0.92,2.3184,L,75,2.086,2.111,22.63,2.06,2.076,
+matching_annotaudio_Aditya_2018-08-17_01_77,0.05,0.046,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_01_78,0.48,0.2496,R,65,0.147,0.161,23.45,0.309,0.311,
+matching_annotaudio_Aditya_2018-08-17_01_79,0.7,2.66,L,60,2.433,2.448,22.19,2.639,2.653,
+matching_annotaudio_Aditya_2018-08-17_01_80,0.14,0.3472,L,70,0.249,0.27,25.94,0.227,0.244,
+matching_annotaudio_Aditya_2018-08-17_01_81,0.75,0.63,L,45,0.431,0.449,28.13,0.463,0.474,
+matching_annotaudio_Aditya_2018-08-17_01_82,0.44,0.4576,R,65,0.649,0.679,35.53,0.63,0.643,
+matching_annotaudio_Aditya_2018-08-17_01_83,0.02,0.0096,R,45,0.136,0.157,45.28,0.114,0.125,
+matching_annotaudio_Aditya_2018-08-17_01_84,0.89,1.3528,R,50,1.344,1.375,20.41,1.334,1.341,

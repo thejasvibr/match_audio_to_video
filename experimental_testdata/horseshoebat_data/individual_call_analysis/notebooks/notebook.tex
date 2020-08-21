@@ -1,0 +1,1656 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Correcting and checking single call annotations}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k+kn}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{from} \PY{n+nn}{correct\PYZus{}call\PYZus{}annotations} \PY{k+kn}{import} \PY{o}{*}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{main\PYZus{}folder} \PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/tbeleyur/Documents/packages\PYZus{}dev/match\PYZus{}audio\PYZus{}to\PYZus{}video/experimental\PYZus{}testdata/horseshoebat\PYZus{}data/individual\PYZus{}call\PYZus{}analysis/}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{channels\PYZus{}to\PYZus{}save} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{} save only first channel}
+        \PY{n}{individual\PYZus{}call\PYZus{}annotation\PYZus{}folder} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{main\PYZus{}folder}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw\PYZus{}individual\PYZus{}call\PYZus{}annotations}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{raw\PYZus{}audio\PYZus{}folder} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{main\PYZus{}folder}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{annotation\PYZus{}audio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{destination\PYZus{}audio\PYZus{}folder} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{main\PYZus{}folder}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{raw\PYZus{}individual\PYZus{}call\PYZus{}snippets}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{section}{%
+\subsubsection{2018-08-16 23:00-24:00}\label{section}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} 2018\PYZhy{}08\PYZhy{}16 23:00\PYZhy{}24:00 matched audio annotations }
+        \PY{n}{annotation\PYZus{}20180816\PYZus{}2300\PYZus{}2400} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{individual\PYZus{}call\PYZus{}annotation\PYZus{}folder}\PY{p}{,} 
+                                                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Audio annotation\PYZus{}2018\PYZhy{}08\PYZhy{}16\PYZus{}2300.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{annots\PYZus{}20180816\PYZus{}23\PYZus{}24} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{annotation\PYZus{}20180816\PYZus{}2300\PYZus{}2400}\PY{p}{)}
+        \PY{n}{annots\PYZus{}20180816\PYZus{}23\PYZus{}24}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:}                           audio\_annotation\_file  start\_random\_point  \textbackslash{}
+        0  matching\_annotaudio\_Aditya\_2018-08-16\_2324\_1                0.40   
+        1  matching\_annotaudio\_Aditya\_2018-08-16\_2324\_3                0.13   
+        2  matching\_annotaudio\_Aditya\_2018-08-16\_2324\_4                0.35   
+        3  matching\_annotaudio\_Aditya\_2018-08-16\_2324\_5                0.80   
+        4  matching\_annotaudio\_Aditya\_2018-08-16\_2324\_6                0.20   
+        
+           search\_start\_time(s) Direction  No.\_of\_ms\_whole\_screen  call\_start\_time  \textbackslash{}
+        0                   NaN         L                     NaN              NaN   
+        1                0.2132         R                     NaN              NaN   
+        2                   NaN         L                     NaN              NaN   
+        3                0.4800         R                     NaN              NaN   
+        4                   NaN         L                     NaN              NaN   
+        
+           call\_end\_time  SNR(dB RMS)  Silent\_period\_Start  Silent\_period\_end  \textbackslash{}
+        0            NaN          NaN                  NaN                NaN   
+        1            NaN          NaN                  NaN                NaN   
+        2            NaN          NaN                  NaN                NaN   
+        3            NaN          NaN                  NaN                NaN   
+        4            NaN          NaN                  NaN                NaN   
+        
+                                                    Comments  Unnamed: 11  
+        0  HSB and FM calls. In the beginning there is HS{\ldots}          NaN  
+        1                                      No clear call          NaN  
+        2                      HSB calls at 80khz peak freq.          NaN  
+        3                                      No clear call          NaN  
+        4  There is only one bat in the cave.However over{\ldots}          NaN  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{extract\PYZus{}single\PYZus{}calls\PYZus{}from\PYZus{}annotations}\PY{p}{(}\PY{n}{annots\PYZus{}20180816\PYZus{}23\PYZus{}24}\PY{p}{,} \PY{n}{raw\PYZus{}audio\PYZus{}folder}\PY{p}{,}
+                                          \PY{n}{save\PYZus{}to}\PY{o}{=}\PY{n}{destination\PYZus{}audio\PYZus{}folder}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/2018\PYZhy{}08\PYZhy{}16\PYZus{}2300\PYZhy{}2400/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                          \PY{n}{save\PYZus{}channels}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_1
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_3
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_4
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_5
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_6
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_7
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_8
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_9
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_10
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_11
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_12
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_14
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_15
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_16
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_17
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_18
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_19
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_20
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_22
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_23
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_24
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_25
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_26
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_27
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_28
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_29
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_30
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_31
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_41
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_44
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_46
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_47
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_49
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_51
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_52
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_54
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_55
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_56
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_57
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_58
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_59
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_60
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_61
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_62
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_64
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_68
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_69
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_70
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_71
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_72
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_73
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_74
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_75
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_77
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_78
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_79
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_80
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_84
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_85
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_86
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_88
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_89
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_90
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_91
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_92
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_93
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_94
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_95
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_96
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_97
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_99
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_100
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_101
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_102
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_103
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_104
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_107
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_108
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_109
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_111
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_112
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_115
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_116
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_117
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_120
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_121
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_122
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_123
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_124
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_125
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_126
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_128
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_129
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_130
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_131
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_132
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_135
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_136
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_138
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_139
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_140
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_141
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_142
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_143
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_148
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_149
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_150
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_151
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_152
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_153
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_154
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_156
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_157
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_159
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_165
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_167
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_169
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_171
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_172
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_173
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_174
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_176
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_177
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_179
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_180
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_181
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_182
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_183
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_184
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_185
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_186
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_187
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_188
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_190
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_192
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_193
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_195
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_196
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_197
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_198
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_199
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_200
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_202
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_204
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_207
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_208
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_209
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_210
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_211
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_212
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_214
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_215
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_216
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_217
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_218
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_219
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_220
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_221
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_223
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_224
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_225
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_226
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_227
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_228
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_229
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_230
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_231
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_234
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_235
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_236
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_247
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_248
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_249
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_250
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_252
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_253
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_254
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_255
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_256
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_257
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_258
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_259
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_260
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_277
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_278
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_279
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_280
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_285
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_286
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_287
+No matches found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-16\_2324\_288
+
+    \end{Verbatim}
+
+    \hypertarget{section}{%
+\subsubsection{-------------------------------------2018-08-17
+00:00-01:00-----------------------------------}\label{section}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} 2018\PYZhy{}08\PYZhy{}17 00:00\PYZhy{}01:00 matched audio annotations }
+        \PY{n}{annotation\PYZus{}20180817\PYZus{}0000\PYZus{}0100} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{individual\PYZus{}call\PYZus{}annotation\PYZus{}folder}\PY{p}{,} 
+                                                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Audio Annotation Datasheet\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}am.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{annots\PYZus{}20180817\PYZus{}00\PYZus{}01} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{annotation\PYZus{}20180817\PYZus{}0000\PYZus{}0100}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{extract\PYZus{}single\PYZus{}calls\PYZus{}from\PYZus{}annotations}\PY{p}{(}\PY{n}{annots\PYZus{}20180817\PYZus{}00\PYZus{}01}\PY{p}{,} \PY{n}{raw\PYZus{}audio\PYZus{}folder}\PY{p}{,}
+                                           \PY{n}{save\PYZus{}to}\PY{o}{=}\PY{n}{destination\PYZus{}audio\PYZus{}folder}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/2018\PYZhy{}08\PYZhy{}17\PYZus{}0000\PYZhy{}0100/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                           \PY{n}{save\PYZus{}channels}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_3
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_6
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_7
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_8
+Match found!
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_14
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_16
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_17
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_18
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_19
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_20
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_23
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_27
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_30
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_31
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_32
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_38
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_42
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_51
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_52
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_53
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_54
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_57
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_61
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_62
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_63
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_66
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_69
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_70
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_72
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_73
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_74
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_01\_77
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+
+    \end{Verbatim}
+
+    \hypertarget{corrections-for-2018-08-17-0000-0100}{%
+\subsubsection{Corrections for 2018-08-17
+00:00-01:00}\label{corrections-for-2018-08-17-0000-0100}}
+
+\hypertarget{changes-to-be-made}{%
+\subsubsection{Changes to be made:}\label{changes-to-be-made}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_11} : call start
+  time to 0.037, call\_end\_time to 0.060
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_15} : call start
+  time 0.370, cal end time to 0.391
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_21} : call end
+  time to 0.112
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_24} : NEEDS TO
+  BE REDONE!! There's a wrong start and end time
+\end{itemize}
+
+WILL WAIT FOR ADITYA TO SEND ME THE DATA BEFORE PROCEEDING AHEAD
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_26} : call start
+  time to 0.032, call end time to 0.049
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_28} : call start
+  time to 0.215
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_29} : call start
+  time to 0.165
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_34} : call start
+  time to 0.087, call end time to 0.111
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_35} : call start
+  time to 0.234, call end time to 0.253
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_36} : call end
+  time to 1.232
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_37} : call end
+  time to 0.023
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_43} : whole call
+  not included in annotation. Call end to 0.740
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_46} : call start
+  time to 0.505
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_47} : call end
+  time to 0.921
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_48} : call end
+  time to 0.086
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_58} : call start
+  time to 1.094, call end time to 1.141
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_60} : call start
+  time to 0.027, call end time to 0.050
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_01\_82} : call start
+  time to 0.648
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{ids\PYZus{}to\PYZus{}be\PYZus{}corrected} \PY{o}{=} \PY{p}{\PYZob{}}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}82}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.648}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}60}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.027}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.050}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}58}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.094}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.141}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}48}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.086}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}47}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.921}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}46}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.505}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}43}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.740}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}37}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.023}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}36}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.232}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}35}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.234}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.253}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}34}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.087}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.111}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}29}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.165}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}28}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.215}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}26}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.032}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.049}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{n}{WAIT} \PY{n}{FOR} \PY{n}{CORRECTION}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}24}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.094}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.141}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}21}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.112}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}15}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.370}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.391}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZus{}11}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.037}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.060}\PY{p}{\PYZcb{}}
+                            \PY{p}{\PYZcb{}}
+            
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+          File "<ipython-input-5-8cd757039985>", line 16
+        WAIT FOR CORRECTION'matching\_annotaudio\_Aditya\_2018-08-17\_01\_24' : \{'call\_start\_time':1.094, 'call\_end\_time':1.141\},
+               \^{}
+    SyntaxError: invalid syntax
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{annots\PYZus{}20180817\PYZus{}00\PYZus{}01}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:}                         audio\_annotation\_file  start\_random\_point  \textbackslash{}
+         0  matching\_annotaudio\_Aditya\_2018-08-17\_01\_2                0.58   
+         1  matching\_annotaudio\_Aditya\_2018-08-17\_01\_3                0.50   
+         2  matching\_annotaudio\_Aditya\_2018-08-17\_01\_4                0.79   
+         3  matching\_annotaudio\_Aditya\_2018-08-17\_01\_6                0.55   
+         4  matching\_annotaudio\_Aditya\_2018-08-17\_01\_7                0.09   
+         
+            search\_start\_time(s) Direction  No.\_of\_ms\_whole\_screen  call\_start\_time  \textbackslash{}
+         0                0.1392         L                    60.0            0.350   
+         1                0.2400         R                     NaN              NaN   
+         2                1.2324         R                    50.0            1.257   
+         3                0.3300         L                     NaN              NaN   
+         4                0.0252         L                     NaN              NaN   
+         
+            call\_end\_time  SNR(dB RMS)  Silent\_period\_Start  Silent\_period\_end  \textbackslash{}
+         0          0.550        25.79                0.061              0.065   
+         1            NaN          NaN                  NaN                NaN   
+         2          1.276        23.12                1.246              1.253   
+         3            NaN          NaN                  NaN                NaN   
+         4            NaN          NaN                  NaN                NaN   
+         
+                                                     Comments  
+         0  The amplitude reduces towards the end of the C{\ldots}  
+         1                                      No clear call  
+         2                                                NaN  
+         3                                      No clear call  
+         4                                      No clear call  
+\end{Verbatim}
+            
+    \hypertarget{section}{%
+\subsubsection{2018-08-17 01:00-02:00}\label{section}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{annotation\PYZus{}20180817\PYZus{}0100\PYZus{}0200} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{individual\PYZus{}call\PYZus{}annotation\PYZus{}folder}\PY{p}{,} 
+                                                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Audio Annotation Datasheet\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}01\PYZhy{}02\PYZus{}am.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{annots\PYZus{}20180817\PYZus{}01\PYZus{}02} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{annotation\PYZus{}20180817\PYZus{}0100\PYZus{}0200}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{extract\PYZus{}single\PYZus{}calls\PYZus{}from\PYZus{}annotations}\PY{p}{(}\PY{n}{annots\PYZus{}20180817\PYZus{}01\PYZus{}02}\PY{p}{,} \PY{n}{raw\PYZus{}audio\PYZus{}folder}\PY{p}{,}
+                                          \PY{n}{save\PYZus{}to}\PY{o}{=}\PY{n}{destination\PYZus{}audio\PYZus{}folder}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/2018\PYZhy{}08\PYZhy{}17\PYZus{}0100\PYZhy{}0200/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                          \PY{n}{save\PYZus{}channels}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_3
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_6
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_7
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_9
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_12
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_13
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_14
+Match found!
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_23
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_24
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_25
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_27
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_32
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_37
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_38
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_41
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_42
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_43
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_52
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_56
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_57
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_58
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_61
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_62
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_63
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_64
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_65
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_67
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_69
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_70
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_72
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_78
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_81
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_83
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_85
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_90
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_91
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_92
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_94
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_97
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_98
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_99
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_105
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_106
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_112
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_113
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_122
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_123
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_124
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_125
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-17\_12\_126
+
+    \end{Verbatim}
+
+    \hypertarget{corrections-for-2018-08-17-0100-0200}{%
+\subsubsection{Corrections for 2018-08-17
+01:00-02:00}\label{corrections-for-2018-08-17-0100-0200}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{matching\_annotaudio\_Adity\_2018-08-17\_12\_2} : call end
+  time to 0.338
+\item
+  \textbf{matching\_annotaudio\_Adity\_2018-08-17\_12\_21} : call start
+  time to 0.718, call end time to 0.770
+\item
+  \textbf{matching\_annotaudio\_Adity\_2018-08-17\_12\_39} : call start
+  time to 0.141, call end time to 0.194
+\item
+  \textbf{matching\_annotaudio\_Adity\_2018-08-17\_12\_44} : call end
+  time to 0.166
+\item
+  \textbf{matching\_annotaudio\_Adity\_2018-08-17\_12\_50} : call end
+  time to 0.228
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_12\_71}: call end
+  time to 1.845
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_12\_76}: call start
+  time to 0.026, call end time to 0.052
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_12\_80}: call start
+  time to 0.080
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_12\_88}: call end
+  time to 0.447
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_12\_104}: call start
+  time to 3.538, call end time to 3.576
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-17\_12\_110}: call start
+  time to 2.345
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{ids\PYZus{}to\PYZus{}be\PYZus{}corrected} \PY{o}{=} \PY{p}{\PYZob{}}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}2}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.338}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}21}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.718}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mf}{0.770}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}39}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.141}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.194}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}44}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.166}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}50}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.228}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}71}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.845}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}76}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.026}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.052}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}80}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.080}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}88}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.447}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}104}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{3.538}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}end\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{3.576}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Adity\PYZus{}2018\PYZhy{}08\PYZhy{}17\PYZus{}12\PYZus{}110}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{2.345}\PY{p}{\PYZcb{}}
+                             \PY{p}{\PYZcb{}}
+             
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{each} \PY{o+ow}{in} \PY{n}{annots\PYZus{}20180817\PYZus{}01\PYZus{}02}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{12\PYZus{}117}\PY{l+s+s1}{\PYZsq{}}  \PY{o+ow}{in} \PY{n}{each}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{audio\PYZus{}annotation\PYZus{}file}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+                 \PY{k}{print}\PY{p}{(}\PY{n}{each}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+audio\_annotation\_file     matching\_annotaudio\_Aditya\_2018-08-17\_12\_117
+start\_random\_point                                                0.13
+search\_start\_time(s)                                            0.6084
+Direction                                                            L
+No.\_of\_ms\_whole\_screen                                              70
+call\_start\_time                                                  2.629
+call\_end\_time                                                    2.652
+SNR(dB RMS)                                                       28.4
+Silent\_period\_Start                                              2.662
+Silent\_period\_end                                                2.671
+Comments                                                           NaN
+Name: 77, dtype: object
+
+    \end{Verbatim}
+
+    \hypertarget{section}{%
+\subsubsection{------------------------------------------------------------------------------------------------------------------------------------------------------------------}\label{section}}
+
+    \hypertarget{section}{%
+\subsubsection{2018-08-19 02:00-03:00}\label{section}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} 2018\PYZhy{}08\PYZhy{}19 02:00\PYZhy{}03:00 matched audio annotations }
+        \PY{n}{annotation\PYZus{}20180819\PYZus{}0200\PYZus{}0300} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{individual\PYZus{}call\PYZus{}annotation\PYZus{}folder}\PY{p}{,} 
+                                                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Audio Annotation Datasheet\PYZus{}2018\PYZhy{}08\PYZhy{}19\PYZus{}23\PYZus{}am.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{annots\PYZus{}20180819\PYZus{}0200\PYZus{}0300} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{annotation\PYZus{}20180819\PYZus{}0200\PYZus{}0300}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{extract\PYZus{}single\PYZus{}calls\PYZus{}from\PYZus{}annotations}\PY{p}{(}\PY{n}{annots\PYZus{}20180819\PYZus{}0200\PYZus{}0300}\PY{p}{,} \PY{n}{raw\PYZus{}audio\PYZus{}folder}\PY{p}{,}
+                                           \PY{n}{save\PYZus{}to}\PY{o}{=}\PY{n}{destination\PYZus{}audio\PYZus{}folder}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/2018\PYZhy{}08\PYZhy{}19\PYZus{}0200\PYZhy{}0300/}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                           \PY{n}{save\PYZus{}channels}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_3
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_4
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_6
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_15
+Match found!
+Match found!
+Match found!
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_29
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_30
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_31
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_32
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_33
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_34
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_36
+Match found!
+Match found!
+Could not save call!
+matching\_annotaudio\_Aditya\_2018-08-19\_23\_38
+Match found!
+Match found!
+
+    \end{Verbatim}
+
+    \hypertarget{corrections-for-2018-08-19-0200-0300}{%
+\subsubsection{Corrections for 2018-08-19
+02:00-03:00}\label{corrections-for-2018-08-19-0200-0300}}
+
+There were only a few annotations from which single calls could be
+extracted:
+
+\hypertarget{changes-to-be-made}{%
+\subsubsection{Changes to be made:}\label{changes-to-be-made}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-19\_23\_16} : call start
+  time to 0.340
+\item
+  \textbf{matching\_annotaudio\_Aditya\_2018-08-19\_23\_19} : call start
+  time to 0.425
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{each} \PY{o+ow}{in} \PY{n}{annots}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{23\PYZus{}39}\PY{l+s+s1}{\PYZsq{}}  \PY{o+ow}{in} \PY{n}{each}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{audio\PYZus{}annotation\PYZus{}file}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+                \PY{k}{print}\PY{p}{(}\PY{n}{each}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+audio\_annotation\_file     matching\_annotaudio\_Aditya\_2018-08-19\_23\_39
+start\_random\_point                                               0.71
+search\_start\_time(s)                                           0.3692
+Direction                                                           R
+No.\_of\_ms\_whole\_screen                                             65
+call\_start\_time                                                  0.42
+call\_end\_time                                                   0.455
+SNR(dB RMS)                                                     30.07
+Silent\_period\_Start                                             0.469
+Silent\_period\_end                                               0.478
+Comments                      There is a faint echo of another call. 
+Name: 21, dtype: object
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{ids\PYZus{}to\PYZus{}be\PYZus{}corrected} \PY{o}{=} \PY{p}{\PYZob{}}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}19\PYZus{}23\PYZus{}16}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.340}\PY{p}{\PYZcb{}}\PY{p}{,}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{matching\PYZus{}annotaudio\PYZus{}Aditya\PYZus{}2018\PYZhy{}08\PYZhy{}19\PYZus{}23\PYZus{}19}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{call\PYZus{}start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.425}\PY{p}{\PYZcb{}}  
+                            \PY{p}{\PYZcb{}}
+            
+\end{Verbatim}
+
+
+    \hypertarget{section}{%
+\subsubsection{2018-08-20 0111-0200?}\label{section}}
+
+    \hypertarget{section}{%
+\subsubsection{2018-08-20 0200-0300}\label{section}}
+
+    \hypertarget{section}{%
+\subsubsection{2018-08-20 0300-0400}\label{section}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} 2018\PYZhy{}08\PYZhy{}20 03:00\PYZhy{}04:00 matched audio annotations }
+        \PY{n}{annotation\PYZus{}20180820\PYZus{}0300\PYZus{}0400} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{individual\PYZus{}call\PYZus{}annotation\PYZus{}folder}\PY{p}{,} 
+                                                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{annots\PYZus{}20180819\PYZus{}0200\PYZus{}0300} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{annotation\PYZus{}20180819\PYZus{}0200\PYZus{}0300}\PY{p}{)}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

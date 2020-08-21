@@ -1,0 +1,36 @@
+
+Notes:
+*Copy of the original docx file attached in the email*
+
+*This is the [template file](../manual_measurements_data_sheet.csv) for data entry also attached in the email* 
+
+Protocol for manual measurements of horseshoe bat calls:  discussion over Skype by Aditya and Thejasvi 5/2/2020 (see email sent to HBC group on 5/2/2020 15:05).
+
+* All measurements and signal processing will be done using Audacity. 
+* dB rms measurements made with the 'Contrast' function in Audacity. Highpassing done with the inbuilt highpass filter. 
+
+    1. Load annotation audio file, and delete all non-target channels. 
+    2. View audio in spectrogram mode. Set dynamic range of audio to 60dB. Set the 
+    3. Highpass filter audio file with 12 dB roll off/octave at 80 kHz cutoff frequency
+    4. For given audio file, choose  a start point using a random number generator between 0-1. 
+    5. Go to that fraction of time corresponding to the length of the annotation audio file 
+    6. Choose another random number between 0-1. If it's <=0.5 search towards left, else search towards right. 
+    7. Look for a horseshoebat call with no overlaps, no interference patterns in the CF or FM, that can be isolated well. 
+    8. While selecting horseshoe bat calls, zoom in max till 60 milliseconds of audio occupy the whole screen. Do not zoom in more or less while selecting. 
+    9. Check the SNR of the selected horseshoe bat call by using a 'silent period' of the audio file as background.  If there is not suitably long 'silent period' to serve as background in this audio file, choose another random audio file and measure the background dB rms. 
+        a. If SNR >= 20 dB:
+            i. This is a suitable call to measure. 
+            ii. Zoom to 60 ms resolution
+            iii. Select whole call -> get dB rms
+            iv. If there's two FM sweeps in the call, get dB rms of each FM sweep, else of just one. 
+        b. If SNR < 20dB
+            i. Go back to search start point calculated in 4), and begin searching in opposite direction. 
+            ii. Look for first suitable call to measure using criteria in 5).
+        c. If a suitable call is still NOT found:
+            i. No measurement takes place in this audio annotation. Proceed to next audio annotation file.
+
+
+### Changes made to the original protocol decided on 5/5/2020:
+
+* No manual measurements were made, aside from the broad start and end times of the identified call. Manual measurements such as FM/CF durations were considered too error-prone, and not reproducible. This was a major drive for the development of *itsfm*. 
+

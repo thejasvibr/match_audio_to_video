@@ -1,0 +1,24 @@
+audio_annotation_file,start_random_point,search_start_time(s),Direction,No._of_ms_whole_screen,call_start_time,call_end_time,SNR(dB RMS),Silent_period_Start,Silent_period_end,Comments
+matching_annotaudio_Aditya_2018-08-19_23_2,0.54,0.3024,R,70,0.328,0.351,30.02,0.313,0.323,
+matching_annotaudio_Aditya_2018-08-19_23_3,0.96,NA,R,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However there are overlapping HSB calls. Succeeding this is a 2 bat situation.
+matching_annotaudio_Aditya_2018-08-19_23_4,0.93,0.2604,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-19_23_5,0.36,0.1008,L,70,0.178,0.196,33.31,0.075,0.093,Silent interval taken from matching_annotaudio_Aditya_2018-08-19_23_2
+matching_annotaudio_Aditya_2018-08-19_23_6,0.41,0.0656,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-19_23_12,0.78,0.8424,L,70,0.774,0.791,31.2,0.584,0.597,
+matching_annotaudio_Aditya_2018-08-19_23_14,0.44,0.3344,R,45,0.294,0.312,39.29,0.386,0.392,
+matching_annotaudio_Aditya_2018-08-19_23_15,0.2,0.096,L,NA,NA,NA,NA,NA,NA,No clear call. There seem  to be overlapping HSB calls in channel 1 only. Succeeding this is a 2 bat event
+matching_annotaudio_Aditya_2018-08-19_23_16,0.7,0.336,R,60,0.341,0.361,36.07,0.371,0.386,
+matching_annotaudio_Aditya_2018-08-19_23_17,0.98,1.0192,R,65,0.274,0.29,20.71,0.264,0.27,
+matching_annotaudio_Aditya_2018-08-19_23_18,0.13,0.1612,R,80,0.414,0.433,26.95,0.399,0.411,
+matching_annotaudio_Aditya_2018-08-19_23_19,0.39,0.468,L,40,0.426,0.443,31.97,0.45,0.457,
+matching_annotaudio_Aditya_2018-08-19_23_29,0.89,1.2816,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-19_23_30,0.5,NA,R,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However there are overlapping HSB calls. Succeeding this is a 2 bat situation.
+matching_annotaudio_Aditya_2018-08-19_23_31,0.91,NA,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-19_23_32,0.37,0.4588,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-19_23_33,0.91,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However there are overlapping HSB calls. Succeeding this is a 2 bat situation.
+matching_annotaudio_Aditya_2018-08-19_23_34,0.91,1.456,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-19_23_36,0.56,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However there are overlapping HSB calls. Succeeding this is a 3 bat situation.
+matching_annotaudio_Aditya_2018-08-19_23_37,0.16,0.9664,R,50,1.686,1.716,25.26,1.676,1.684,
+matching_annotaudio_Aditya_2018-08-19_23_38,0.62,0.62,R,NA,NA,NA,NA,NA,NA,There are overalapping HSB calls towards the end.
+matching_annotaudio_Aditya_2018-08-19_23_39,0.71,0.3692,R,65,0.42,0.455,30.07,0.469,0.478,There is a faint echo of another call. 
+matching_annotaudio_Aditya_2018-08-19_23_40,0.8,0.448,L,70,0.387,0.405,26.49,0.371,0.391,

@@ -1,0 +1,2 @@
+audio_annotation_file,start_random_point,search_start_time(s),Direction,No._of_ms_whole_screen,call_start_time,call_end_time,SNR(dB RMS),Silent_period_Start,Silent_period_end,Comments
+matching_annotaudio_Aditya_2018-08-17_01_24,0.85,0.544,L,80,0.037,0.059,24.93,0.191,0.195,There are faint echoes along with the call.

@@ -173,7 +173,7 @@ def match_video_sync_to_audio(video_sync,
         if audio_video_match <= av_match_threshold:   
             warning_msg = 'The AV sync may not be very great - please check again. The value was :' + str(audio_video_match)
             warnings.warn(warning_msg, stacklevel=1)
-        else:
+        elif audio_video_match > av_match_threshold:
             print('AV Sync was above threshold: ', audio_video_match)
 
         return(matched_audio, syncblock_audio, 

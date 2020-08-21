@@ -1,0 +1,47 @@
+audio_annotation_file,start_random_point,search_start_time(s),Direction,No._of_ms_whole_screen,call_start_time,call_end_time,SNR(dB RMS),Silent_period_Start,Silent_period_end,Comments
+matching_annotaudio_Aditya_2018-08-17_56_6,27,1.1772,R,70,3.109,3.132,27.45,3.477,3.492,
+matching_annotaudio_Aditya_2018-08-17_56_9,57,1.0488,L,60,0.563,0.606,22.68,0.553,0.562,
+matching_annotaudio_Aditya_2018-08-17_56_10,96,NA,R,NA,NA,NA,NA,NA,NA,"myotis calls, although seems as if its flying outside the cave"
+matching_annotaudio_Aditya_2018-08-17_56_11,59,0.6136,R,65,0.778,0.808,22.75,1.01,1.026,
+matching_annotaudio_Aditya_2018-08-17_56_12,80,1.36,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_56_13,81,NA,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_56_15,100,NA,R,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_18,26,NA,L,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_23,31,0.1488,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_56_24,38,,L,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_27,34,0.6392,L,60,0.085,0.108,29.11,0.222,0.24,
+matching_annotaudio_Aditya_2018-08-17_56_31,55,0.154,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_56_37,39,NA,L,NA,NA,NA,NA,NA,NA,Prominent myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_38,70,NA,L,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_39,36,NA,L,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_40,95,NA,R,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_43,84,NA,R,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_44,5,NA,R,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_46,97,NA,L,NA,NA,NA,NA,NA,NA,Only myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_48,81,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls and faint HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_52,39,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_54,8,NA,R,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_57,95,,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_56_58,1,0.0028,L,70,0.091,0.108,33.07,0.191,0.199,Silent interval taken from Annotation_38. Not very confident. There are echoes before the call starts
+matching_annotaudio_Aditya_2018-08-17_56_59,55,0.99,R,55,1.401,1.423,26.09,0.48,0.489,
+matching_annotaudio_Aditya_2018-08-17_56_67,2,NA,L,NA,NA,NA,NA,NA,NA,Multiple bat situation with prominent HBC and Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_73,50,NA,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_56_77,84,NA,L,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_83,61,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls and faint HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_87,3,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_91,74,1.7464,L,40,1.462,1.484,28.52,1.909,1.919,
+matching_annotaudio_Aditya_2018-08-17_56_95,5,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_102,66,0.8448,R,60,0.472,0.491,21.93,0.506,0.513,
+matching_annotaudio_Aditya_2018-08-17_56_106,6,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls and  HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_109,10,0.076,R,50,0.051,0.073,24.93,0.031,0.042,
+matching_annotaudio_Aditya_2018-08-17_56_126,64,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_128,33,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_134,47,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_138,19,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + faint HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_143,11,0.044,R,50,0.054,0.077,22.52,0.03,0.047,
+matching_annotaudio_Aditya_2018-08-17_56_156,78,NA,L,NA,NA,NA,NA,NA,NA,Prominent myotis calls
+matching_annotaudio_Aditya_2018-08-17_56_164,14,NA,L,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_169,20,NA,R,NA,NA,NA,NA,NA,NA,Two bat situation- Prominent M+ HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_171,41,NA,R,NA,NA,NA,NA,NA,NA,Multi bat situation- Prominent M+ HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_127,29,NA,L,NA,NA,NA,NA,NA,NA,Myotis+HSB calls
+matching_annotaudio_Aditya_2018-08-17_56_168,71,NA,R,NA,NA,NA,NA,NA,NA,There were only 1-2 loud myotis call. But still not considered.

@@ -1,0 +1,12 @@
+,audio_path,segment_method,signal_level,measurements,tfr_cliprange,window_size,extrap_window,max_acc,fmrate_threshold
+0,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_2_hp.WAV,pwvd,-40,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",DEFAULT,375,5E-05,3,2
+1,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_5_hp.WAV,pwvd,-40,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",24,375,5E-05,3,2
+2,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_12_hp.WAV,pwvd,-40,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",DEFAULT,375,5E-05,3,2
+3,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_14_hp.WAV,pwvd,-40,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",DEFAULT,375,5E-05,3,2
+4,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_16_hp.WAV,pwvd,-40,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",DEFAULT,375,5E-05,3,2
+5,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_17_hp.WAV,pwvd,-50,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",DEFAULT,375,5E-05,3,2
+6,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_18_hp.WAV,pwvd,-40,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",DEFAULT,375,5E-05,3,2
+7,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_19_hp.WAV,pwvd,-40,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",24,375,5E-05,3,2
+8,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_37_hp.WAV,pwvd,-52,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",24,375,5E-05,3,2
+9,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_39_hp.WAV,pwvd,-52,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",42,375,5E-05,3,2
+10,../../hp_ind_calls/2018-08-19_0200-0300/segment_matching_annotaudio_Aditya_2018-08-19_23_40_hp.WAV,pwvd,-40,"[measure_peak_amplitude, measure_peak_frequency, measure_rms, measure_terminal_frequency]",DEFAULT,375,5E-05,3,2

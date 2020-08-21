@@ -1,0 +1,191 @@
+audio_annotation_file,start_random_point,search_start_time(s),Direction,No._of_ms_whole_screen,call_start_time,call_end_time,SNR(dB RMS),Silent_period_Start,Silent_period_end,Comments
+matching_annotaudio_Aditya_2018-08-17_45_1,0.58,1.044,L,55,0.052,0.071,22.02,0.082,0.092,
+matching_annotaudio_Aditya_2018-08-17_45_2,0.5,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_3,0.79,0.4424,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_4,0.55,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_5,0.09,0.0612,R,NA,NA,NA,NA,NA,NA,No clear call. There is overlap of multiple HSB calls ( This is succeeded by a 2 bat situation)
+matching_annotaudio_Aditya_2018-08-17_45_8,0.43,0.1548,L,NA,NA,NA,NA,NA,NA,No calls with good enough SNR
+matching_annotaudio_Aditya_2018-08-17_45_9,0.98,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80 kHz
+matching_annotaudio_Aditya_2018-08-17_45_10,0.34,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at peak freq. of 80 kHz
+matching_annotaudio_Aditya_2018-08-17_45_22,0.9,0.54,R,70,0.343,0.36,25.36,0.325,0.338,
+matching_annotaudio_Aditya_2018-08-17_45_24,0.42,1.2768,L,45,0.142,0.164,22.23,0.125,0.134,
+matching_annotaudio_Aditya_2018-08-17_45_25,0.89,2.7412,L,50,2.691,2.724,25.32,2.751,2.761,
+matching_annotaudio_Aditya_2018-08-17_45_26,0.67,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_27,0.82,0.4592,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_28,0.44,,L,NA,NA,NA,NA,NA,NA,Wrong annotation
+matching_annotaudio_Aditya_2018-08-17_45_29,0.61,0.7808,R,45,0.362,0.392,36.6,0.406,0.416,
+matching_annotaudio_Aditya_2018-08-17_45_31,0.91,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation between a myotis and HSB
+matching_annotaudio_Aditya_2018-08-17_45_32,0.71,NA,L,NA,NA,NA,NA,NA,NA,2 bat situation between a myotis and HSB
+matching_annotaudio_Aditya_2018-08-17_45_33,0.37,2.22,R,45,4.598,4.618,20.09,4.586,4.596,Not sure . There are 1-2 'pink' myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_48,0.98,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation between a myotis and HSB
+matching_annotaudio_Aditya_2018-08-17_45_49,0.85,NA,L,NA,NA,NA,NA,NA,NA,There are myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_50,0.93,NA,L,NA,NA,NA,NA,NA,NA,There are myotis calls + HSB calls. The bat goes into the roost for some time and then comes out. Another bat could have come out.
+matching_annotaudio_Aditya_2018-08-17_45_51,0.62,1.0912,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_52,0.55,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_53,0.62,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_54,0.27,NA,R,NA,NA,NA,NA,NA,NA,HSB calls and prominent myotis calls towards the end- succeeding this is a 2 bat situation
+matching_annotaudio_Aditya_2018-08-17_45_55,0.36,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation involving a myotis and HSB
+matching_annotaudio_Aditya_2018-08-17_45_56,0.11,0.1452,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_58,0.41,NA,R,NA,NA,NA,NA,NA,NA,There are myotis calls + HSB calls. The bat goes into the roost for some time and then comes out. Another bat could have come out.
+matching_annotaudio_Aditya_2018-08-17_45_59,0.41,NA,L,NA,NA,NA,NA,NA,NA,Both HSB+ myotis calls present. There is only bat in the video.
+matching_annotaudio_Aditya_2018-08-17_45_60,0.45,NA,L,NA,NA,NA,NA,NA,NA,HSB calls and prominent myotis calls towards the end- succeeding this is another one bat situation in a few frames
+matching_annotaudio_Aditya_2018-08-17_45_61,0.4,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_67,0.91,0.91,R,NA,NA,NA,NA,NA,NA,No calls with good enough SNR
+matching_annotaudio_Aditya_2018-08-17_45_69,0.06,NA,R,NA,NA,NA,NA,NA,NA,Wrong video annotation. ONE SECOND EXTRA ADDED.
+matching_annotaudio_Aditya_2018-08-17_45_70,0.84,NA,R,NA,NA,NA,NA,NA,NA,3-4 prominent myotis calls towards the end. There is only HSB flying.
+matching_annotaudio_Aditya_2018-08-17_45_71,0.97,NA,L,NA,NA,NA,NA,NA,NA,Prominent myotis calls in between. There is only one bat flying in and out of the roost multiple times.
+matching_annotaudio_Aditya_2018-08-17_45_78,0.27,NA,L,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls. There is another one bat situation after this in a few frames. The calls of the second bat could be of this.
+matching_annotaudio_Aditya_2018-08-17_45_85,0.05,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls. There is a two bat situation after this in a few frames. The calls of the second bat could be of this.
+matching_annotaudio_Aditya_2018-08-17_45_86,0.86,NA,L,NA,NA,NA,NA,NA,NA,2 bat situation involving a myotis and HSB
+matching_annotaudio_Aditya_2018-08-17_45_87,0.71,NA,L,NA,NA,NA,NA,NA,NA,"There is only one bat in the cave, going in and out of the roost. But there are myotis and HSB calls."
+matching_annotaudio_Aditya_2018-08-17_45_90,0.39,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_91,0.78,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_92,0.64,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_93,0.42,0.1512,R,NA,NA,NA,NA,NA,NA,No clear calls in Channel 1. Good calls in channel 2
+matching_annotaudio_Aditya_2018-08-17_45_96,0.38,NA,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_99,0.1,0.24,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_100,0.38,0.5624,L,70,1.042,1.071,23.72,1.024,1.042,There is one 'pink' myotis call in between
+matching_annotaudio_Aditya_2018-08-17_45_103,0.17,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation involving a myotis and HSB. One bat has gone into the roost.
+matching_annotaudio_Aditya_2018-08-17_45_104,0.49,NA,R,NA,NA,NA,NA,NA,NA,3 bat situation involving a myotis and HSB. One bat has gone into the roost.
+matching_annotaudio_Aditya_2018-08-17_45_106,0.37,NA,L,NA,NA,NA,NA,NA,NA,2 bat situation involving a myotis and HSB. 
+matching_annotaudio_Aditya_2018-08-17_45_107,0.8,NA,R,NA,NA,NA,NA,NA,NA,3 bat situation. There are prominent myotis calls. Seems as if one of the bat is a myotis
+matching_annotaudio_Aditya_2018-08-17_45_108,0.43,NA,,NA,NA,NA,NA,NA,NA,4 bat situation. There are prominent myotis calls. Seems as if one of the bat is a myotis
+matching_annotaudio_Aditya_2018-08-17_45_109,0.53,NA,,NA,NA,NA,NA,NA,NA,3 bat situation. Prominent myotis calls present
+matching_annotaudio_Aditya_2018-08-17_45_110,0.54,NA,,NA,NA,NA,NA,NA,NA,2 bat situation. Myotiss and HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_112,0.17,NA,,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_113,0.57,0.5472,R,60,0.086,0.114,31.09,0.079,0.085,
+matching_annotaudio_Aditya_2018-08-17_45_114,0.38,NA,,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_115,0.87,0.348,,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_116,0.34,1.5232,R,70,3.48,3.507,21.92,3.518,3.545,
+matching_annotaudio_Aditya_2018-08-17_45_117,0.98,0.6272,L,75,0.61,0.632,25.26,0.554,0.562,The intensity of the second half of the call is low. Not sure whether it happens because of interference
+matching_annotaudio_Aditya_2018-08-17_45_118,0.94,11.5432,R,40,9.892,9.909,27.11,10.063,10.076,
+matching_annotaudio_Aditya_2018-08-17_45_119,0.92,6.6976,L,60,2.037,2.057,28.63,1.878,1.881,
+matching_annotaudio_Aditya_2018-08-17_45_121,0.05,0.026,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_122,0.48,0.2112,R,40,0.197,0.217,26.15,0.097,0.111,Silent period taken from 45_104
+matching_annotaudio_Aditya_2018-08-17_45_123,0.7,0.112,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_124,0.14,0.112,L,50,0.162,0.193,20.09,0.204,0.221,
+matching_annotaudio_Aditya_2018-08-17_45_125,0.75,0.69,R,NA,NA,NA,NA,NA,NA,No calls with good enough SNR
+matching_annotaudio_Aditya_2018-08-17_45_126,0.44,0.1936,L,60,0.399,0.416,20.64,0.206,0.213,"In addition to HSB calls, there are faint myotis calls. However, they are visible faintly after HP filter."
+matching_annotaudio_Aditya_2018-08-17_45_127,0.02,0.0528,R,45,2.006,2.021,22.4,2.122,2.127,Not sure whether it’s a 2 bat situation involving a myotis and HSB. Myotis calls are very faint.
+matching_annotaudio_Aditya_2018-08-17_45_128,0.89,NA,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_129,0.6,NA,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_132,0.99,NA,L,NA,NA,NA,NA,NA,NA,Only myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_133,0.58,2.3664,L,NA,NA,NA,NA,NA,NA,Wrong video annotation.2 bat situation in between..
+matching_annotaudio_Aditya_2018-08-17_45_135,0.96,3.5328,R,55,0.142,0.16,34.85,0.473,0.486,There are echoes at the start of the call. But the call is very loud.
+matching_annotaudio_Aditya_2018-08-17_45_137,0.33,0.2112,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_141,0.36,0.1008,L,70,0.127,0.165,27.88,0.251,0.263,Not sure. It seems as if it’s a 2 bat situation between myotis and HSB. However the myotis calls are very faint.
+matching_annotaudio_Aditya_2018-08-17_45_161,0.48,NA,L,NA,NA,NA,NA,NA,NA,3 bat situation - one of them is a myotis bat
+matching_annotaudio_Aditya_2018-08-17_45_162,0.52,2.184,L,70,0.228,0.251,24.13,0.208,0.223,
+matching_annotaudio_Aditya_2018-08-17_45_164,0.02,0.1256,L,50,3.262,3.28,23.57,3.297,3.308,
+matching_annotaudio_Aditya_2018-08-17_45_165,1,NA,L,NA,NA,NA,NA,NA,NA,3 bat situation - one of them is a myotis bat
+matching_annotaudio_Aditya_2018-08-17_45_172,0.39,0.6864,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_173,0.66,1.1352,R,55,1.159,1.177,21.84,1.186,1.197,
+matching_annotaudio_Aditya_2018-08-17_45_174,0.12,0.8544,L,55,0.164,0.185,34.79,0.148,0.161,
+matching_annotaudio_Aditya_2018-08-17_45_178,0.52,0.1248,L,NA,NA,NA,NA,NA,NA,One bat situation. Calls of the next coming into the cave also present. 
+matching_annotaudio_Aditya_2018-08-17_45_180,0.54,1.188,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_182,0.19,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat flying. However there are very prominent FM calls.
+matching_annotaudio_Aditya_2018-08-17_45_185,0.24,0.1248,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_186,0.4,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_188,0.76,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_189,0.66,1.5576,R,70,0.104,0.13,22.28,0.137,0.146,
+matching_annotaudio_Aditya_2018-08-17_45_200,0.26,0.6552,R,40,0.216,0.239,22.04,0.209,0.215,"There are few myotis calls, not very prominent. However they are 'light pink'"
+matching_annotaudio_Aditya_2018-08-17_45_201,0.16,NA,R,NA,NA,NA,NA,NA,NA,"There is only one bat in the cave. However, in the beginning of the call, both myotis and HSB calls present."
+matching_annotaudio_Aditya_2018-08-17_45_202,0.4,NA,L,NA,NA,NA,NA,NA,NA,"There is only one bat in the cave. However, both myotis and HSB calls present."
+matching_annotaudio_Aditya_2018-08-17_45_203,1,12.92,L,50,0.263,0.296,32.28,0.33,0.341,
+matching_annotaudio_Aditya_2018-08-17_45_204,0.53,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_205,0.14,0.1288,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_207,0.37,1.3616,L,NA,NA,NA,NA,NA,NA,Very prominent myotis calls in the beginning. There is only bat flying.
+matching_annotaudio_Aditya_2018-08-17_45_210,0.67,NA,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_211,0.28,0.5488,L,60,0.114,0.145,24.34,0.188,0.203,
+matching_annotaudio_Aditya_2018-08-17_45_212,0.29,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation - myotis and HSB
+matching_annotaudio_Aditya_2018-08-17_45_227,0.42,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation - myotis and HSB
+matching_annotaudio_Aditya_2018-08-17_45_228,0.92,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_229,0.36,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation -prominent myotis and HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_230,0.87,NA,R,NA,NA,NA,NA,NA,NA,"There is only one bat flying. However in addition to HSB calls,there are very prominent FM calls towards the end. This should be that of the bat coming into the view after a few frame"
+matching_annotaudio_Aditya_2018-08-17_45_231,0.5,0.28,L,40,0.105,0.122,20.36,0.336,0.341,The Fm part is very faint. Looks as if there is a point with interference in the FM part
+matching_annotaudio_Aditya_2018-08-17_45_232,0.11,NA,L,NA,NA,NA,NA,NA,NA,There is only bat flying. However  prominent myotis+ HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_233,0.98,3.2928,R,NA,NA,NA,NA,NA,NA,There is only bat flying. However  prominent myotis+ HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_234,0.47,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_235,0.82,NA,L,NA,NA,NA,NA,NA,NA,There is only bat flying. However  prominent myotis+ HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_237,0.23,0.23,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_244,0.29,0.638,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_252,0.71,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_253,0.09,NA,L,NA,NA,NA,NA,NA,NA,Prominent myotis +HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_254,0.35,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_255,0.37,NA,R,NA,NA,NA,NA,NA,NA,There is only one bat in the video. However myotis calls + overlapping HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_256,0.95,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_257,0.35,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_259,0.28,NA,R,NA,NA,NA,NA,NA,NA,There are both HSB and FM calls. A two bat situation succeeds this.
+matching_annotaudio_Aditya_2018-08-17_45_262,0.19,0.2812,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_263,0.52,NA,L,NA,NA,NA,NA,NA,NA,Prominent myotis +HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_264,0.01,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis +HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_265,0.25,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation - myotis and HSB
+matching_annotaudio_Aditya_2018-08-17_45_266,0.37,NA,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_267,0.29,0.3712,R,60,1.151,1.17,27.42,1.139,1.144,
+matching_annotaudio_Aditya_2018-08-17_45_269,0.56,0.2688,L,70,0.257,0.283,32.04,0.341,0.346,
+matching_annotaudio_Aditya_2018-08-17_45_270,0.59,0.6844,R,70,0.984,1.001,25.84,1.106,1.113,
+matching_annotaudio_Aditya_2018-08-17_45_271,0.04,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_272,0.97,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls. 2 bat situation
+matching_annotaudio_Aditya_2018-08-17_45_275,0.66,NA,R,NA,NA,NA,NA,NA,NA,"In addition to HSB calls, there are prominent myotis calls. A 2 bat situation succeeds this."
+matching_annotaudio_Aditya_2018-08-17_45_276,0.98,NA,R,NA,NA,NA,NA,NA,NA,Only myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_279,0.91,NA,L,NA,NA,NA,NA,NA,NA,No clear calls.
+matching_annotaudio_Aditya_2018-08-17_45_282,0.8,NA,R,NA,NA,NA,NA,NA,NA,Prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_284,0.79,NA,R,NA,NA,NA,NA,NA,NA,3 bat situation - one of them is a myotis bat
+matching_annotaudio_Aditya_2018-08-17_45_285,0.43,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation - myotis + HSB calls. Seems as if one of them is a myotis bat
+matching_annotaudio_Aditya_2018-08-17_45_286,0.3,NA,R,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_287,0.22,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the video. However prominent myotis calls + HSB calls
+matching_annotaudio_Aditya_2018-08-17_45_290,0.52,0.208,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_291,0.53,NA,L,NA,NA,NA,NA,NA,NA,"There is only one bat in the video. However prominent myotis calls + HSB calls. Succeeding this is another bat coming into the cave in a few frames,"
+matching_annotaudio_Aditya_2018-08-17_45_292,0.51,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation -  very prominent myotis calls and HSB calls. One of the bat would be a myotis
+matching_annotaudio_Aditya_2018-08-17_45_293,0.72,NA,R,NA,NA,NA,NA,NA,NA,3 bat situation -  very prominent myotis calls and HSB calls. One of the bat would be a myotis
+matching_annotaudio_Aditya_2018-08-17_45_295,0.86,NA,L,NA,NA,NA,NA,NA,NA,3 bat situation -  very prominent myotis calls and HSB calls. One of the bat would be a myotis
+matching_annotaudio_Aditya_2018-08-17_45_296,0.33,NA,L,NA,NA,NA,NA,NA,NA,2 bat situation -  very prominent myotis calls and HSB calls. One of the bat would be a myotis
+matching_annotaudio_Aditya_2018-08-17_45_297,0.26,NA,L,NA,NA,NA,NA,NA,NA,3 bat situation -  very prominent myotis calls and HSB calls. One of the bat would be a myotis
+matching_annotaudio_Aditya_2018-08-17_45_298,0.64,NA,L,NA,NA,NA,NA,NA,NA,3 bat situation -  very prominent myotis calls and HSB calls. One of the bat would be a myotis
+matching_annotaudio_Aditya_2018-08-17_45_299,0.13,NA,R,NA,NA,NA,NA,NA,NA,Only myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_300,0.29,NA,L,NA,NA,NA,NA,NA,NA,Only myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_301,0.35,NA,R,NA,NA,NA,NA,NA,NA,Only myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_302,0.51,0.1428,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_303,0.87,0.4176,L,40,0.298,0.327,20,0.356,0.386,
+matching_annotaudio_Aditya_2018-08-17_45_304,0.89,NA,R,NA,NA,NA,NA,NA,NA,Only myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_305,0.95,NA,L,NA,NA,NA,NA,NA,NA,Only myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_306,0.98,NA,R,NA,NA,NA,NA,NA,NA,"Incorrect annotation, however myotis calls only"
+matching_annotaudio_Aditya_2018-08-17_45_307,0.25,NA,L,NA,NA,NA,NA,NA,NA,There is only bat flying. However there is another bat inside the roost. Both HSB and FM calls
+matching_annotaudio_Aditya_2018-08-17_45_308,0.06,NA,L,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_309,0.59,NA,L,NA,NA,NA,NA,NA,NA,"Myotis calls. Towards the end, there are HSB calls. Succeeding this is a 2 bat situation."
+matching_annotaudio_Aditya_2018-08-17_45_310,0.44,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_311,0.95,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_312,0.45,NA,NA,NA,NA,NA,NA,NA,NA,Prominent myotis and HSB calls. There is only one bat in the cave. However succeeding this is a 2 bat situation.
+matching_annotaudio_Aditya_2018-08-17_45_314,0.86,NA,NA,NA,NA,NA,NA,NA,NA,3 bat situation -    myotis calls and HSB calls. One of the bat would be a myotis
+matching_annotaudio_Aditya_2018-08-17_45_316,0.42,0.3528,NA,NA,NA,NA,NA,NA,NA,2 bat situation- however there are faint myotis calls. Not very prominent. But still can be seen as 'pink''
+matching_annotaudio_Aditya_2018-08-17_45_317,0.42,0.1344,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_318,0.52,0.936,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_319,0.41,NA,NA,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-17_45_320,0.04,NA,NA,NA,NA,NA,NA,NA,NA,There is only one bat in the cave. However there is prominent mytois call in addition to HSB call
+matching_annotaudio_Aditya_2018-08-17_45_321,0.68,0.21828,L,70,0.042,0.065,20.69,0.162,0.168,
+matching_annotaudio_Aditya_2018-08-17_45_322,0.05,0.018,R,80,0.162,0.193,27.3,0.322,0.324,
+matching_annotaudio_Aditya_2018-08-17_45_323,0.44,1.3904,NA,NA,NA,NA,NA,NA,NA,Prominent Myotis calls 
+matching_annotaudio_Aditya_2018-08-17_45_324,0.4,NA,NA,NA,NA,NA,NA,NA,NA,There are  3-4 'light pink' myotis calls. Hence not annotated. It is a 2 bat situation.
+matching_annotaudio_Aditya_2018-08-17_45_325,0.67,NA,NA,NA,NA,NA,NA,NA,NA,3-4 myotis calls in addition to HSB calls. There is only one bat flying in the cave. Myotis calls could be of the ones flying in the corridor
+matching_annotaudio_Aditya_2018-08-17_45_326,0.81,0.6804,L,50,0.291,0.319,29.22,0.329,0.334,
+matching_annotaudio_Aditya_2018-08-17_45_327,0.04,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_329,0.38,NA,nA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_330,0.78,NA,nA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_332,0.04,NA,nA,NA,NA,NA,NA,NA,NA,HSB calls + myotis calls
+matching_annotaudio_Aditya_2018-08-17_45_333,0.43,NA,nA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_334,0.5,NA,nA,NA,NA,NA,NA,NA,NA,2 bat situation - prominent myotis + HSB calls.
+matching_annotaudio_Aditya_2018-08-17_45_336,0.97,NA,nA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_337,0.25,0.11,L,55,0.083,0.107,20.73,0.317,0.32,There are very faint remaining parts of FM call.
+matching_annotaudio_Aditya_2018-08-17_45_339,0.84,1.9488,R,70,1.954,1.983,26.85,2.02,2.033,
+matching_annotaudio_Aditya_2018-08-17_45_340,0.56,1.0528,R,55,1.202,1.221,31.53,1.015,1.026,
+matching_annotaudio_Aditya_2018-08-17_45_341,0.3,0.444,L,45,0.286,0.313,20.45,0.263,0.278,
+matching_annotaudio_Aditya_2018-08-17_45_342,0.32,0.2816,R,55,0.294,0.315,44.42,0.274,0.284,
+matching_annotaudio_Aditya_2018-08-17_45_344,0.48,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_345,0.1,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_346,0.16,NA,NA,NA,NA,NA,NA,NA,NA,2 bat situation - prominent myotis + HSB calls.
+matching_annotaudio_Aditya_2018-08-17_45_347,0.31,1.2028,NA,NA,NA,NA,NA,NA,NA,There are quite a few 'light pink' myotis calls even after HP filter. 
+matching_annotaudio_Aditya_2018-08-17_45_348,0.27,0.6912,R,80,1.813,1.832,21.85,1.87,1.881,There are very faint remaining parts of FM call.
+matching_annotaudio_Aditya_2018-08-17_45_349,0.13,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_350,0.38,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_351,0.93,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only
+matching_annotaudio_Aditya_2018-08-17_45_352,0.68,NA,NA,NA,NA,NA,NA,NA,NA,Myotis calls only

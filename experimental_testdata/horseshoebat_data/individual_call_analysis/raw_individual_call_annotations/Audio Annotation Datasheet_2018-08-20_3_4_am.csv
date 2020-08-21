@@ -1,0 +1,49 @@
+audio_annotation_file,start_random_point,search_start_time(s),Direction,No._of_ms_whole_screen,call_start_time,call_end_time,SNR(dB RMS),Silent_period_Start,Silent_period_end,Comments
+matching_annotaudio_Aditya_2018-08-20_0300-0400_1,0.55,NA,R,NA,NA,NA,NA,NA,NA,Incorrect Video Annotation. There is no bat flying during this time period
+matching_annotaudio_Aditya_2018-08-20_0300-0400_6,0.97,NA,R,NA,NA,NA,NA,NA,NA,Incorrect Video Annotation. There is no bat flying during this time period
+matching_annotaudio_Aditya_2018-08-20_0300-0400_9,0.79,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_10,0.11,NA,R,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_13,0.51,NA,L,NA,NA,NA,NA,NA,NA,2 bat situation - HSB at 100 kHz and 80kHz
+matching_annotaudio_Aditya_2018-08-20_0300-0400_14,0.79,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation - HSB at 100 kHz and 80kHz
+matching_annotaudio_Aditya_2018-08-20_0300-0400_16,0.42,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at 80kHz
+matching_annotaudio_Aditya_2018-08-20_0300-0400_18,0.71,1.2496,R,55,0.466,0.498,30.92,0.513,0.519,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_19,0.3,0.6,R,60,0.619,0.638,30.5,0.596,0.604,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_23,0.31,NA,L,NA,NA,NA,NA,NA,NA,Fm - HSB calls at 100 kHz. There is only one bat present though
+matching_annotaudio_Aditya_2018-08-20_0300-0400_24,0.3,NA,L,NA,NA,NA,NA,NA,NA,Fm - HSB calls at 100 kHz. There is only one bat present though
+matching_annotaudio_Aditya_2018-08-20_0300-0400_25,0.88,0.5984,R,80,0.035,0.067,23.88,0.088,0.104,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_26,0.77,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_27,0.91,NA,R,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_28,0.38,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_29,0.07,NA,R,NA,NA,NA,NA,NA,NA,HSB calls at 80kHz-100kHz
+matching_annotaudio_Aditya_2018-08-20_0300-0400_30,0.03,NA,L,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_31,0.79,0.5688,L,45,0.04,0.062,21.34,0.03,0.037,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_32,0.81,NA,L,NA,NA,NA,NA,NA,NA,FM-HSB calls at 100 kHz.
+matching_annotaudio_Aditya_2018-08-20_0300-0400_33,0.37,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave . However overlapping calls towards the end.
+matching_annotaudio_Aditya_2018-08-20_0300-0400_34,0.52,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave . However FM-HSB calls.
+matching_annotaudio_Aditya_2018-08-20_0300-0400_35,0.24,0.2016,R,55,0.267,0.286,26.69,0.256,0.263,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_36,0.92,NA,R,NA,NA,NA,NA,NA,NA,HSB calls + Prominent FM calls in channel 1
+matching_annotaudio_Aditya_2018-08-20_0300-0400_38,0.86,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at 80kHz-100kHz
+matching_annotaudio_Aditya_2018-08-20_0300-0400_39,0.39,NA,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0300-0400_42,0.12,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation - HSB at 100 kHz and 80kHz
+matching_annotaudio_Aditya_2018-08-20_0300-0400_55,0.4,NA,R,NA,NA,NA,NA,NA,NA,2 bat situation with HSB calls at 100 kHz. But prominent myotis calls in the beginning
+matching_annotaudio_Aditya_2018-08-20_0300-0400_56,0.24,0.096,L,100,0.053,0.104,20.52,0.12,0.13,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_57,0.85,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at 80kHz.
+matching_annotaudio_Aditya_2018-08-20_0300-0400_58,0.84,3.6624,L,70,3.554,3.579,30.58,3.598,3.604,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_61,0.56,0.4704,R,45,0.354,0.371,20.96,0.383,0.392,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_69,0.61,NA,L,NA,NA,NA,NA,NA,NA,There is only one bat in the cave . However overlapping calls towards the end. Succeeding this is a 2 bat situation
+matching_annotaudio_Aditya_2018-08-20_0300-0400_70,0.83,5.3784,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0300-0400_71,0.36,0.4752,R,NA,NA,NA,NA,NA,NA,"HSB calls+ FM calls towards the end. There is only one bat in the cave though,"
+matching_annotaudio_Aditya_2018-08-20_0300-0400_72,0.42,NA,R,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_73,0.71,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at 80kHz
+matching_annotaudio_Aditya_2018-08-20_0300-0400_74,0.96,NA,R,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_75,0.5,NA,L,NA,NA,NA,NA,NA,NA,HSB calls at 80kHz +100kHz
+matching_annotaudio_Aditya_2018-08-20_0300-0400_78,0.8,NA,R,NA,NA,NA,NA,NA,NA,There is only one bat in the video. However overlapping calls in the audio. Succeeding this is a multiple bat situation
+matching_annotaudio_Aditya_2018-08-20_0300-0400_79,0.31,0.2356,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0300-0400_80,0.05,NA,R,NA,NA,NA,NA,NA,NA,FM calls only
+matching_annotaudio_Aditya_2018-08-20_0300-0400_81,0.24,0.2592,L,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0300-0400_83,0.84,0.1008,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0300-0400_84,0.12,0.0288,R,NA,NA,NA,NA,NA,NA,No clear call
+matching_annotaudio_Aditya_2018-08-20_0300-0400_85,0.08,0.08,R,60,0.21,0.232,28.88,0.197,0.203,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_90,0.63,0.4032,R,80,0.234,0.25,32.33,0.288,0.297,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_91,0.66,0.2904,L,55,0.157,0.179,26.12,0.258,0.264,NA
+matching_annotaudio_Aditya_2018-08-20_0300-0400_92,0.34,0.2312,L,90,0.052,0.073,22.69,0.104,0.111,NA
