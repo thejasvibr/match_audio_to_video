@@ -1,0 +1,4 @@
+[core]
+    remote = backup
+['remote "backup"']
+    url = /media/tbeleyur/My Passport/horseshoe_remote

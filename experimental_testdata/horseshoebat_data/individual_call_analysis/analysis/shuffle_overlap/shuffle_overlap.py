@@ -4,6 +4,14 @@ across the distributions.
 
 This module implements  shuffling + overlap calculation to assess
 if two distributions are relatively similar or different from each other. 
+
+Histograms of the two datasets are made according to user defined bins. 
+These bins represent what the user thinks of as biologically and 
+experimentally relevant. 
+
+The overlap between the two histograms are then calculated using a variety of 
+different similarity/overlap coefficients.
+
 '''
 import numpy as np 
 from scipy import stats
@@ -128,6 +136,53 @@ def calculate_overlap(main_distbn, other_distbn, **kwargs):
         
    
     return overlap, (minmax_range, main_pdf, other_pdf) 
+
+def generate_histogram(dataset, bin_width, **kwargs):
+    '''
+    Generates a histogram of the input dataset. A set of bins are generated
+    that include the minimum and maximum value that is user-defiend or obtained
+    from the dataset.
+    
+    Parameters
+    ----------
+    dataset : np.array
+    bin_width : float >0
+    minimax : tuple, optional
+        Tuple with two entries of the form (minimum, maximum).
+        Defaults to the minimum and maximum of the input datset. 
+    pmf : bool, optional 
+        Whether to output the probability mass function or not. 
+        Defaults to False, which leads to output of the counts only. 
+    
+    Returns 
+    -------
+    height : np.array
+        Either the counts in each bin or the probability of the bin in 
+        the probability mass function. This is decided by the 'pmf' argument. 
+    bins : np.array
+        The actual bins used to bin the data. Remember that in np.histogram
+        the last bin is special in that it includes the right edge too. 
+    
+    See Also 
+    --------
+    np.histogram
+   
+    '''
+    minmax = kwargs.get('minmax', (np.min(dataset), np.max(dataset)))
+    data_bins = generate_bins(minmax, bin_width)
+    height, bins = np.histogram(dataset, bins=data_bins)
+    
+    if kwargs.get('pmf', False):
+        height = height/sum(height)
+        
+    return height, bins
+
+def generate_bins(minmax, bin_width):
+    minimum, maximum = minmax
+    bins = np.arange(minimum, maximum, bin_width)
+    if not maximum in bins:
+        bins = np.concatenate((bins, np.array([maximum]))).flatten()
+    return bins
 
 def shuffle_and_calc_overlap(main_distbn, other_distbn, **kwargs):
     shuffled_1, shuffled_2 = shuffle_datasets(main_distbn, other_distbn)
