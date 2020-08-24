@@ -18,40 +18,6 @@ from scipy import stats
 import joblib
 from joblib import Parallel, delayed
 
-def generate_kde(data):
-    '''
-    '''
-    return stats.gaussian_kde(data)
-
-def get_global_minmax(dist1, dist2):
-    '''
-    Parameters
-    ----------
-    dist1, dist2 : np.array 
-        M points x N columns arrays with the raw data. 
-
-    Returns
-    -------
-    min_vals, max_vals : np.array
-        1 x N_columns np.arrays which hold the global minimum/maximum value for that column
-    '''
-    if np.ndim(dist1)>1:
-        joint_dataset = np.row_stack((dist1, dist2))
-        min_vals = np.min(joint_dataset, 0)
-        max_vals = np.max(joint_dataset, 0)
-    else:
-        joint_dataset = np.concatenate((dist1, dist2))
-        min_vals = np.min(joint_dataset)
-        max_vals = np.max(joint_dataset)
-        
-    return min_vals, max_vals
-    
-def remove_nans(X):
-    if np.sum(np.isnan(X)) >0:
-        nan_indices = np.isnan(X)
-        return X[~nan_indices]
-    else:
-        return X
 
 
 def shuffle_datasets(distbn_1, distbn_2):
@@ -67,32 +33,25 @@ def shuffle_datasets(distbn_1, distbn_2):
     np.random.shuffle(joint_shuffled)
     shuffled_1, shuffled_2 = joint_shuffled[:size_1], joint_shuffled[size_1:] 
     return shuffled_1, shuffled_2
-
-
-        
     
-    
-def calculate_overlap(main_distbn, other_distbn, **kwargs):
+def calculate_overlap(main_distbn, other_distbn, bin_width, **kwargs):
     '''Calculates the overlap between two distributions through the following steps:
-    1. Remove NaNs from data
-    2. Generate Kernel Density Estimates(KDEs)
-    3. Calculate probability distribution function (PDF) for both KDEs across the 
-       global minimum and maximum value of both input datasets
-    4. Calculate overlap by multiplying the two PDFs and summing up the 'joint PDF'
-       This summed up value is called the 'overlap'
+        
+    1) Generate histogram from data using common bins for both datasets
+    2) Quantify similarity of datsets by comparing similarity of histograms
+       using overlap index of choice.
 
     Parameters
     ----------
     main_distbn, other_distbn : np.array 
         Each array is an 1 x N_points np.array 
-    num_points: int>0, optional    
-        Number of points to evaluate the PDF on between the global minimum
+    bin_width : float. 
+        The width of the hisotgram bins used to bin all the data. 
     overlap_method : str, optional
-        The method used to calculate the distribution overlap. Defaults to 
-        custom, where the two PDFs are multiplied and summed up. 
-        The other method is 'integral'. The 'integral' method may/may not 
-        have more power in detecting differences between distributions - use 
-        after testing for a simulated dataset.
+        The method used to quantify the distribution overlap. Options
+        include 'bhattacharya', 'hellinger'. Defaults to 'bhattacharya'.
+    pmf : bool, optional
+        Defaults to False
     
     Returns 
     -------
@@ -104,38 +63,67 @@ def calculate_overlap(main_distbn, other_distbn, **kwargs):
 
     Note
     ----
-    The final 'overlap' value only makes sense when compared with a sensible and similar value. 
-    The obtained overlap value generated cannot be interpreted directly because it's not normalised in 
-    any way. 
+    The choice of overlap method is very important in how to interpret the results. 
     
-    The sensible way to understand the obtained overlap is to compare it with the overlap values 
-    where the data is shuffled between the two input distributions.
+    The Hellinger distance is a bounded distance between 0-np.sqrt(2). 0 means the two 
+    distributions are identical, and higher numbers means the distributions 
+    are more different. The lower the Hellinger distance, the more similar the
+    two distributions are. 
+    
+    The Bhattacharya coefficient (BC) is an unbounded measure of similarity. 
+    The higher the BC, the more similar the two distributions are. 
 
+    Another important factor that will influence the calculated overlap measures
+    is the user-defined 'bin_width'. If the bin width is too wide, then it will 
+    obscure the actual similarity/differences between the two distributions. 
+
+    See Also
+    --------
+    generate_histogram
     '''
-    main_distbn = remove_nans(main_distbn)
-    other_distbn = remove_nans(other_distbn)
-    main_kde = generate_kde(main_distbn,)
-    other_kde = generate_kde(other_distbn,)
     
-    # calculate overlap between the two KDEs by integrating between the global min and max values
-    global_min, global_max = get_global_minmax(main_distbn, other_distbn)
-    
-    # calculate the pdf over the global min-max
-    minmax_range = np.linspace(global_min, global_max, kwargs.get('num_points', 1000))
-    main_pdf = main_kde.evaluate(minmax_range)
-    other_pdf = other_kde.evaluate(minmax_range)
-    
+    global_minmax = get_global_minmax(main_distbn, other_distbn)
+    main_data_hist, bins = generate_histogram(main_distbn, bin_width=bin_width,
+                                              minmax=global_minmax, **kwargs)
+    other_data_hist, bins = generate_histogram(other_distbn, bin_width=bin_width,
+                                               minmax=global_minmax, **kwargs)
+   
     # overlap 
-    overlap_method = kwargs.get('overlap_method', 'custom')
-    if overlap_method == 'custom':
-        overlap = np.sum(np.sqrt(main_pdf*other_pdf))
-    elif overlap_method == 'integral':
-        overlap = main_kde.integrate_kde(other_kde)
+    overlap_method = kwargs.get('overlap_method', 'bhattacharyya')
+    if overlap_method == 'bhattacharyya':
+        overlap = bhattacharyya_coefficient(main_data_hist, other_data_hist)
+    elif overlap_method == 'hellinger':
+        overlap = hellinger_distance(main_data_hist, other_data_hist)
     else:
-        raise ValueError(f'Invalid overlap method: {overlap_method} given!')
+        raise ValueError(f'Invalid overlap index: {overlap_method} given!')
         
    
-    return overlap, (minmax_range, main_pdf, other_pdf) 
+    return overlap, (global_minmax, main_data_hist, other_data_hist) 
+
+def bhattacharyya_coefficient(P,Q):
+    '''
+    
+
+    Parameters
+    ----------
+    P,Q : np.arrays
+        Arrays with the probability mass functions across a set of bins
+
+    Returns
+    -------
+    bhattacharyya_coef : float. 
+
+    '''
+    return np.sum(np.sqrt(P*Q))
+    
+def hellinger_distance(P,Q):
+    '''
+    
+    '''
+    if np.logical_or(np.min([P,Q])<0, np.max([P,Q])>1):
+        raise ValueError('probability values for Hellinger distance cannot be <0 or >1')
+    bc = bhattacharyya_coefficient(P, Q)
+    return np.sqrt(1-bc)
 
 def generate_histogram(dataset, bin_width, **kwargs):
     '''
@@ -149,6 +137,7 @@ def generate_histogram(dataset, bin_width, **kwargs):
     bin_width : float >0
     minimax : tuple, optional
         Tuple with two entries of the form (minimum, maximum).
+        When NaNs are present in the data, they are just ignored.
         Defaults to the minimum and maximum of the input datset. 
     pmf : bool, optional 
         Whether to output the probability mass function or not. 
@@ -168,7 +157,7 @@ def generate_histogram(dataset, bin_width, **kwargs):
     np.histogram
    
     '''
-    minmax = kwargs.get('minmax', (np.min(dataset), np.max(dataset)))
+    minmax = kwargs.get('minmax', (np.nanmin(dataset), np.nanmax(dataset)))
     data_bins = generate_bins(minmax, bin_width)
     height, bins = np.histogram(dataset, bins=data_bins)
     
@@ -234,6 +223,54 @@ def overlap_w_shuffling(main_distbn, other_distbn, **kwargs):
 
 
     return original_overlap, overlap_results, shuffled_overlap
-        
+
+def generate_kde(data):
+    '''
+    Historial function from the time the overlap analysis happened with kernels
+    '''
+    return stats.gaussian_kde(data)
+    
 def percentile_score_of_value(X, distribution):
     return stats.percentileofscore(distribution, X)
+
+
+def get_global_minmax(dist1, dist2):
+    '''
+    Parameters
+    ----------
+    dist1, dist2 : np.array 
+        M points x N columns arrays with the raw data. 
+
+    Returns
+    -------
+    min_vals, max_vals : np.array
+        1 x N_columns np.arrays which hold the global minimum/maximum value for that column
+    '''
+    if np.ndim(dist1)>1:
+        joint_dataset = np.row_stack((dist1, dist2))
+        min_vals = np.nanmin(joint_dataset, 0)
+        max_vals = np.nanmax(joint_dataset, 0)
+    else:
+        joint_dataset = np.concatenate((dist1, dist2))
+        min_vals = np.nanmin(joint_dataset)
+        max_vals = np.nanmax(joint_dataset)
+    return min_vals, max_vals
+    
+def remove_nans(X):
+    if np.sum(np.isnan(X)) >0:
+        nan_indices = np.isnan(X)
+        return X[~nan_indices]
+    else:
+        return X
+if __name__=='__main__':
+    a = np.random.normal(100000, 2500, 100);
+    b = np.random.normal(100000,2500, 100);
+    bc, data = calculate_overlap(a, b, bin_width=500, pmf=True, overlap_method='bhattacharyya') 
+    print(bc)
+    
+    hd, data = calculate_overlap(a, b, bin_width=500, pmf=True, overlap_method='hellinger') 
+    print(hd)
+
+    
+
+
