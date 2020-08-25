@@ -56,6 +56,7 @@ def lower_minusXdB_peakfrequency(audio, **kwargs):
     '''
     Returns the lowest frequency that is -X dB of the peak frequency.
     First the smoothened spectrum is generatd, and then the -X dB
+    
     Parameters
     ----------
     audio : TYPE
