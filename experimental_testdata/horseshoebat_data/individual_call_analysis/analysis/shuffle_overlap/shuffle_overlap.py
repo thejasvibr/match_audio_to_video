@@ -15,56 +15,56 @@ different similarity/overlap coefficients.
 '''
 import numpy as np 
 from scipy import stats
-import joblib
-from joblib import Parallel, delayed
+#import joblib
+#from joblib import Parallel, delayed
 
 
 
-def overlap_w_shuffling(main_distbn, other_distbn, **kwargs):
-    '''
-    1. Calculates overlap between the distributions of the two input 
-    distributions. 
-    2. Performs data shuffling betweent he two distbns, and calculates overlap
+# def overlap_w_shuffling(main_distbn, other_distbn, **kwargs):
+#     '''
+#     1. Calculates overlap between the distributions of the two input 
+#     distributions. 
+#     2. Performs data shuffling betweent he two distbns, and calculates overlap
     
-    Parameters
-    ----------
-    main_distbn, other_distbn : array-like
-        The measurement/parameter values
-    num_points : int >0, optional 
-        Number of points to evaluate the PDF on between the global minimum 
-        and maximum. Defaults to 1000
-    num_shuffles : int>0, optional 
-        Number of shuffling rounds to be performed. Defaults to 2500
+#     Parameters
+#     ----------
+#     main_distbn, other_distbn : array-like
+#         The measurement/parameter values
+#     num_points : int >0, optional 
+#         Number of points to evaluate the PDF on between the global minimum 
+#         and maximum. Defaults to 1000
+#     num_shuffles : int>0, optional 
+#         Number of shuffling rounds to be performed. Defaults to 2500
     
-    Returns 
-    -------
-    original_overlap : float
-        Overlap value between the PDFs of the two input distributions 
-    overlap_results : tuple
-        Intermediate data from calculate_overlap of the original datasets.
-    shuffled_overlap : array-like 
-        List with all overlap values from shuffled data
+#     Returns 
+#     -------
+#     original_overlap : float
+#         Overlap value between the PDFs of the two input distributions 
+#     overlap_results : tuple
+#         Intermediate data from calculate_overlap of the original datasets.
+#     shuffled_overlap : array-like 
+#         List with all overlap values from shuffled data
 
-    Note
-    ----
-    *This is not the full story - still needs to be clarified....*
-    The overlap calculated is the overlap of *non-normalised* counts/units that the 
-    input distribution is actually given in. The scipy.gaussian_kde.evaluate function 
-    actually returns the counts if counts are given, and PDF if pdf is given. 
+#     Note
+#     ----
+#     *This is not the full story - still needs to be clarified....*
+#     The overlap calculated is the overlap of *non-normalised* counts/units that the 
+#     input distribution is actually given in. The scipy.gaussian_kde.evaluate function 
+#     actually returns the counts if counts are given, and PDF if pdf is given. 
     
-    See Also
-    --------
-    calculate_overlap
-    '''
-    original_overlap, overlap_results = calculate_overlap(main_distbn, other_distbn, **kwargs)
+#     See Also
+#     --------
+#     calculate_overlap
+#     '''
+#     original_overlap, overlap_results = calculate_overlap(main_distbn, other_distbn, **kwargs)
     
-    num_shuffles = kwargs.get('num_shuffles', 2500)
+#     num_shuffles = kwargs.get('num_shuffles', 2500)
     
 
-    shuffled_overlap = Parallel(n_jobs=4)(delayed(shuffle_and_calc_overlap)(main_distbn, other_distbn, **kwargs) for i in range(num_shuffles))
+#     shuffled_overlap = Parallel(n_jobs=4)(delayed(shuffle_and_calc_overlap)(main_distbn, other_distbn, **kwargs) for i in range(num_shuffles))
 
 
-    return original_overlap, overlap_results, shuffled_overlap
+#     return original_overlap, overlap_results, shuffled_overlap
 
 def calculate_overlap(main_distbn, other_distbn, **kwargs):
     '''Calculates the overlap between two distributions through the following steps:
@@ -264,25 +264,25 @@ def remove_nans(X):
     else:
         return X
 
-if __name__=='__main__':
-    import matplotlib.pyplot as plt 
+# if __name__=='__main__':
+#     import matplotlib.pyplot as plt 
     
-    num_datapoints = 2000
+#     num_datapoints = 2000
     
-    source  = np.random.normal(100000, 5000, num_datapoints*2)
-    source  = np.concatenate((np.random.normal(95000, 2500, num_datapoints), source)).flatten()
-    a = np.random.choice(source, num_datapoints)
-    b = np.random.choice(source, int(num_datapoints*0.25))
-    bc, data = calculate_overlap(a, b, bin_width=500, pmf=True, overlap_method='hellinger') 
-    print(bc)
+#     source  = np.random.normal(100000, 5000, num_datapoints*2)
+#     source  = np.concatenate((np.random.normal(95000, 2500, num_datapoints), source)).flatten()
+#     a = np.random.choice(source, num_datapoints)
+#     b = np.random.choice(source, int(num_datapoints*0.25))
+#     bc, data = calculate_overlap(a, b, bin_width=500, pmf=True, overlap_method='hellinger') 
+#     print(bc)
     
     
-    obs, _, b = overlap_w_shuffling(a,b, bin_width=500, pmf=True,
-                                    overlap_method='hellinger')
+#     obs, _, b = overlap_w_shuffling(a,b, bin_width=500, pmf=True,
+#                                     overlap_method='hellinger')
 
-    plt.figure()
-    plt.hist(b)
-    plt.vlines(obs, 0, len(b)/2.0, 'r')
+#     plt.figure()
+#     plt.hist(b)
+#     plt.vlines(obs, 0, len(b)/2.0, 'r')
 
     
 
