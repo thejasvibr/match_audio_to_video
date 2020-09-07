@@ -81,7 +81,7 @@ def lower_minusXdB_peakfrequency(audio, **kwargs):
     freqs_audio = np.fft.rfftfreq(audio.size, 1.0/fs)
     freq_resolution = np.max(np.diff(freqs_audio))
     
-    peak_f = peak_frequency(audio, fs=fs)
+    peak_f = peak_f = freqs_audio[np.argmax(smooth_spectrum)]# peak_frequency(audio, fs=fs)
 
     below_threshold = smooth_spectrum <= np.max(smooth_spectrum)-db_range
     freqs_below_threshold = freqs_audio[below_threshold]
