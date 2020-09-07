@@ -31,6 +31,10 @@ def make_smoothened_spectrum(audio, **kwargs):
 
     Parameters
     ----------
+    audio 
+    fs 
+    spectrum_smoothing_width
+
 
     Returns
     -------
