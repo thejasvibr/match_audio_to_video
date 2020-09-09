@@ -69,6 +69,7 @@ def lower_minusXdB_peakfrequency(audio, **kwargs):
         DESCRIPTION.
     db_range : float, optional
         The X dB range. Defaults to 20 dB
+    spectrum_smoothing_width : 
 
     Returns
     -------

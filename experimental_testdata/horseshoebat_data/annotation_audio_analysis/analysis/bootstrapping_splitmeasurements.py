@@ -1,7 +1,8 @@
 # also write all the cell contents into a separate python file to help with reproducibility
 # across notebook 
 
-
+import numpy as np
+import pandas as pd
 
 def calculate_bootstrapped_median_across_grouptypes(df, measurement_name, summary_fn,proc_fn):
     '''
